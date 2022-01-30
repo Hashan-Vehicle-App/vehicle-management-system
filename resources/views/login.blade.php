@@ -10,16 +10,26 @@
 
         <div class="form-group mb-3">
             <label for="username">Username</label>
-            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror">
+            <input id="username" name="username" type="text" value="{{ old('username') }}" class="form-control @error('username') is-invalid @enderror">
+            @error('username')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group mb-4">
             <label for="password">Password</label>
-            <input id="password" type="text" class="form-control @error('password') is-invalid @enderror">
+            <input id="password" name="password" type="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror">
+            @error('password')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="flex justify-center">
             <button type="submit" role="button" class="btn btn-primary">Login</button>
         </div>
+
+        @error ('message')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </form>
 @endsection

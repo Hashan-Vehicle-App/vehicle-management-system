@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'show']);
+Route::get('/admin/login', [LoginController::class, 'show']);
+Route::post('/admin/login', [LoginController::class, 'login']);
+
+Route::get('/admin/dashboard', [AdminController::class, 'showDashboard']);
