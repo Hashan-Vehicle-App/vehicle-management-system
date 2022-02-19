@@ -1,12 +1,10 @@
-@extends ('layouts.external')
+@extends ('layouts.auth')
 
-@section('title', 'Login')
+@section('title', 'Admin Login')
 
 @section('content')
-    <form method="post" action="/admin/login" class="login-form mx-auto rounded-sm bg-white p-6 mt-10">
+    <form method="post" action="/admin/login" class="login-form">
         @csrf
-
-        <h2 class="mb-3 text-center">Admin Login</h2>
 
         <div class="form-group mb-3">
             <label for="username">Username</label>
@@ -16,7 +14,7 @@
             @enderror
         </div>
 
-        <div class="form-group mb-4">
+        <div class="form-group mb-8">
             <label for="password">Password</label>
             <input id="password" name="password" type="password" value="{{ old('password') }}" class="form-control @error('password') is-invalid @enderror">
             @error('password')
@@ -25,7 +23,7 @@
         </div>
 
         <div class="flex justify-center">
-            <button type="submit" role="button" class="btn btn-primary">Login</button>
+            <button type="submit" role="button" class="btn btn-accent">Login</button>
         </div>
 
         @error ('message')

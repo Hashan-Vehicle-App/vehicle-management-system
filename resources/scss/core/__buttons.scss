@@ -1,9 +1,14 @@
 .btn {
-    @apply py-2 px-4;
-    border-radius: 2px;
+    padding: 0.25em 1em;
+    border-radius: 4px;
 }
 
 .btn-primary {
-    @apply bg-violet-600;
+    background-color: $primary;
+    color: #ffffff;
+}
+
+.btn-accent {
+    background-color: $accent;
     color: #ffffff;
 }

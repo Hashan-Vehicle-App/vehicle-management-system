@@ -509,6 +509,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .mb-4 {
   margin-bottom: 1rem;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
 .flex {
   display: flex;
 }
@@ -539,14 +545,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-auto {
   width: auto;
 }
-.w-full {
-  width: 100%;
+.max-w-xl {
+  max-width: 36rem;
 }
 .max-w-6xl {
   max-width: 72rem;
-}
-.max-w-xl {
-  max-width: 36rem;
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -563,17 +566,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .rounded-sm {
   border-radius: 0.125rem;
 }
-.border {
-  border-width: 1px;
+.rounded-md {
+  border-radius: 0.375rem;
 }
 .border-t {
   border-top-width: 1px;
 }
 .border-r {
   border-right-width: 1px;
-}
-.border-solid {
-  border-style: solid;
 }
 .border-gray-200 {
   --tw-border-opacity: 1;
@@ -582,10 +582,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
-}
-.border-gray-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 .bg-white {
   --tw-bg-opacity: 1;
@@ -602,13 +598,17 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -626,6 +626,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .font-semibold {
   font-weight: 600;
+}
+.font-normal {
+  font-weight: 400;
 }
 .uppercase {
   text-transform: uppercase;
@@ -664,6 +667,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
 }
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -677,6 +684,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #eeeeee;
+}
+
+.bg-primary {
+  background-color: #115e59;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
@@ -692,38 +712,33 @@ h2 {
 }
 
 .btn {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  border-radius: 2px;
+  padding: 0.25em 1em;
+  border-radius: 4px;
 }
 
 .btn-primary {
-  --tw-bg-opacity: 1;
-  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
+  background-color: #115e59;
   color: #ffffff;
 }
 
-body {
-  background-color: #eeeeee;
+.btn-accent {
+  background-color: #5b21b6;
+  color: #ffffff;
 }
 
 input[type=text], input[type=password] {
   padding: 5px 10px;
 }
 
+.form-group label {
+  font-size: 0.9em;
+}
 .form-group .form-control {
   display: block;
   width: 100%;
-  border: 1px solid #6366F1;
+  border: 1px solid #d4d4d4;
   border-radius: 2px;
 }
-
-.login-form {
-  max-width: 400px;
-}
-
 @media (prefers-color-scheme: dark) {
 
   .dark\:border-gray-700 {
@@ -756,7 +771,6 @@ input[type=text], input[type=password] {
     color: rgb(156 163 175 / var(--tw-text-opacity));
   }
 }
-
 @media (min-width: 640px) {
 
   .sm\:ml-0 {
@@ -804,7 +818,6 @@ input[type=text], input[type=password] {
     text-align: right;
   }
 }
-
 @media (min-width: 768px) {
 
   .md\:grid-cols-2 {
@@ -819,7 +832,6 @@ input[type=text], input[type=password] {
     border-left-width: 1px;
   }
 }
-
 @media (min-width: 1024px) {
 
   .lg\:px-8 {

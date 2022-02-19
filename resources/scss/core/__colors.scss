@@ -1,1 +1,8 @@
-$primary: #3e40bd
+$primary: rgb(17 94 89);
+$accent: rgb(91 33 182);
+
+$grayLight: rgb(212 212 212);
+
+.bg-primary {
+    background-color: $primary;
+}
