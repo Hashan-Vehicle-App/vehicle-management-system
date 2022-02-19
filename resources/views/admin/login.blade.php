@@ -3,7 +3,7 @@
 @section('title', 'Login')
 
 @section('content')
-    <form method="post" action="/login" class="login-form mx-auto rounded-sm bg-white p-6 mt-10">
+    <form method="post" action="/admin/login" class="login-form mx-auto rounded-sm bg-white p-6 mt-10">
         @csrf
 
         <h2 class="mb-3 text-center">Admin Login</h2>
