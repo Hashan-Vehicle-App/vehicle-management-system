@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/login', [AdminLoginController::class, 'show']);
-Route::post('/admin/login', [AdminLoginController::class, 'login']);
+Route::get('/admin/login', [AdminController::class, 'showLogin']);
+Route::post('/admin/login', [AdminController::class, 'login']);
 
-Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware('auth.admin');
+Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware('auth.admin')->name('admin.dashboard');
