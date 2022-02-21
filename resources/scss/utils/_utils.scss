@@ -1,0 +1,13 @@
+.error {
+    font-size: 0.875em;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 0.15em 0.5em;
+    border-radius: 2px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+input + .error {
+    margin-top: 0.25rem;
+}

@@ -1,0 +1,18 @@
+.auth-page {
+    background-image: url("/img/truck2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba($color: #1e1e1f, $alpha: 0.85);
+        z-index: -1;
+    }
+}

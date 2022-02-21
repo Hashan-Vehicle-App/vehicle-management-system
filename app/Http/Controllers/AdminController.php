@@ -27,8 +27,6 @@ class AdminController extends Controller
             'password' => ['required']
         ]);
 
-        // $user = User::where('username', $request->username)->first();
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended(route('adminDashboard'));
@@ -48,6 +46,6 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/admin/login');
+        return redirect()->route('adminLogin');
     }
 }
