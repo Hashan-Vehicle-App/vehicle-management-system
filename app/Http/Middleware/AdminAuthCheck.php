@@ -18,14 +18,10 @@ class AdminAuthCheck
     public function handle(Request $request, Closure $next)
     {
 
-        error_log('before auth');
-
         if(Auth::check()) {
-            error_log('auth success');
             return $next($request);
         }
 
-        error_log('auth not success');
-        return redirect('/admin/login');
+        return redirect()->route('adminLogin');
     }
 }

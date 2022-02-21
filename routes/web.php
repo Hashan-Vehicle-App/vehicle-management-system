@@ -19,7 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/login', [AdminController::class, 'showLogin']);
-Route::post('/admin/login', [AdminController::class, 'login']);
+Route::get('/admin/login', [AdminController::class, 'login'])->name('adminLogin');
+Route::post('/admin/login', [AdminController::class, 'doLogin']);
 
-Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware('auth.admin')->name('admin.dashboard');
+Route::middleware('auth.admin')->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('adminDashboard');
+
+    Route::post('/admin/logout', [AdminController::class, 'logout'])->name('adminLogout');
+});
