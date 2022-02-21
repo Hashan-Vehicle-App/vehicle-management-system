@@ -15,6 +15,7 @@ class AdminController extends Controller
     }
 
     public function login(Request $request) {
+        
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -23,9 +24,10 @@ class AdminController extends Controller
         $user = User::where('username', $request->username)->first();
 
         if (Hash::check($request->password, $user->password)) {
-            $request->session()->regenerate();
 
-            return redirect()->intended('/admin/dashboard');
+            $request->session()->put('loginId', $user->id);
+
+            return redirect('/admin/dashboard');
         }
 
         return back()->withInput()->withErrors(['message' => 'Invalid credentials']);

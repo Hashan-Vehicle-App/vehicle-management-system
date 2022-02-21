@@ -20,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/admin/login', [AdminController::class, 'showLogin']);
-Route::post('/admin/login', [AdminController::class, 'login']);
+Route::post('/admin/login', [AdminController::class, 'login'])->middleware('alreadyLoggedIn');
 
-Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->middleware('auth.admin')->name('admin.dashboard');
+Route::group(['middleware' => ['auth.admin']], function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard']);
+});

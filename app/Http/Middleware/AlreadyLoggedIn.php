@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AdminAuthCheck
+class AlreadyLoggedIn
 {
     /**
      * Handle an incoming request.
@@ -17,9 +16,8 @@ class AdminAuthCheck
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (!$request->session()->has('loginId')) {
-            return redirect('admin/login')->withErrors('You must be logged in');
+        if (Session()->has('loginId') && (url('admin/login') == $request->url())) {
+            return back();
         }
 
         return $next($request);

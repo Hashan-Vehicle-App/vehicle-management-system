@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use App\Http\Resources\UserResource;
+
 class UserController extends Controller
 {
     public function create(Request $request) {
@@ -38,5 +40,19 @@ class UserController extends Controller
                 'message' => 'Error in creating user'
             ]);
         }
+    }
+
+    public function login(Request $request) {
+        $user = User::where('username', $request->username)->first();
+
+        if(Hash::check($request->password, $user->password)) {
+            $token = $user->createToken('api_token')->plainTextToken;
+
+            $user->tokens()->delete();
+
+            $response = ['data' => new UserResource($user)];
+        } 
+
+        return response($response, 200);
     }
 }
