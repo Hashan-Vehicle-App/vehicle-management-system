@@ -21,13 +21,16 @@
         <nav class="app-nav">
           <ul>
             <li>
-              <a href="#" class="active"><i class="fab fa-chrome mr-2"></i> Dashboard</a>
+              <a href="{{ route('adminDashboard') }}" class="active"><i class="fab fa-chrome mr-2"></i> Dashboard</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-chart-line  mr-2"></i> Reports</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-cog mr-2"></i> Settings</a>
+            </li>
+            <li>
+              <a href="{{ route('addVehicle') }}"><i class="fas fa-cog mr-2"></i> Add Vehicle</a>
             </li>
           </ul>
         </nav>
@@ -37,7 +40,7 @@
     <div id="app-right-column" class="w-full">
       <header id="app-header" class="flex justify-between">
         <div class="page-title">
-          Dashboard
+          @yield('title')
         </div>
 
         <div class="header-nav">
@@ -53,7 +56,7 @@
         </div>
       </header>
 
-      <main>
+      <main class="page-content">
         @yield('content')
       </main>
     </div>

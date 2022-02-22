@@ -35,10 +35,6 @@ class AdminController extends Controller
         return back()->withInput()->withErrors(['message' => 'Invalid credentials']);
     }
 
-    public function showDashboard() {
-        return view('admin.dashboard');
-    }
-
     public function logout(Request $request) {
         Auth::logout();
 
@@ -47,5 +43,13 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('adminLogin');
+    }
+
+    public function showDashboard() {
+        return view('admin.dashboard');
+    }
+
+    public function showAddVehicle() {
+        return view('admin.addVehicle');
     }
 }

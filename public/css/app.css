@@ -476,6 +476,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .-mt-px {
   margin-top: -1px;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.block {
+  display: block;
+}
 .flex {
   display: flex;
 }
@@ -580,6 +586,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -9894,6 +9904,10 @@ input[type=text], input[type=password] {
   padding: 5px 10px;
 }
 
+select {
+  padding: 5px 10px;
+}
+
 .form-group label {
   font-size: 0.9em;
 }
@@ -9969,6 +9983,10 @@ input[type=text], input[type=password] {
 }
 .app-nav ul li a.active, .app-nav ul li a:hover {
   background-color: #686d74;
+}
+
+.page-content {
+  padding: 2rem;
 }
 
 .auth-page {

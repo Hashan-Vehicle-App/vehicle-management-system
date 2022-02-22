@@ -24,6 +24,7 @@ Route::post('/admin/login', [AdminController::class, 'doLogin']);
 
 Route::middleware('auth.admin')->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('adminDashboard');
+    Route::get('/admin/settings/add-vehicle', [AdminController::class, 'showAddVehicle'])->name('addVehicle');
 
     Route::post('/admin/logout', [AdminController::class, 'logout'])->name('adminLogout');
 });
