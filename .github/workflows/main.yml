@@ -48,13 +48,11 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            node_modules/
-            .github/
+            **/node_modules/**
             public/
-            .env.example
-            .gitattributes
-            .gitignore
-            .editorconfig
+            *.env.example
+            *.gitattributes
+            *.editorconfig
             artisan
             composer.json
             composer.lock
