@@ -13,15 +13,15 @@ jobs:
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-
+      
       - name: Install dependencies and optimize
         run: |
           composer install --no-ansi --no-interaction --no-progress --prefer-dist
           php artisan config:clear
           php artisan config:cache
         env: 
-          APP_ENV: production
-          APP_DEBUG: false
+          APP_ENV: local
+          APP_DEBUG: true
           APP_URL: ${{ secrets.PRODUCTION_URL }}
           DB_DATABASE: ${{ secrets.DB_DATABASE }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
@@ -29,6 +29,13 @@ jobs:
 
       - name: Generate key
         run: php artisan key:generate
+
+      - name: Install node modules
+        run: npm install
+
+      - name: Build process
+        run: npm run prod
+
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
@@ -38,7 +45,25 @@ jobs:
           server: server239.web-hosting.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          exclude: public/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .github/
+            public/
+            .env.example
+            .gitattributes
+            .gitignore
+            .editorconfig
+            artisan
+            composer.json
+            composer.lock
+            package.json
+            package-lock.json
+            README.md
+            tailwind.config.js
+            webpack.mix.js
+
           server-dir: ${{ secrets.APP_FOLDER_PATH }}
 
       - name: Upload public folder
