@@ -40,7 +40,7 @@ jobs:
         run: chmod -R 777 storage bootstrap/cache
 
       - name: 📂 Upload project files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: server239.web-hosting.com
           username: ${{ secrets.FTP_USERNAME }}
