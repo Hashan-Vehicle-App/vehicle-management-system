@@ -36,7 +36,7 @@
   </div>
 
   <div class="form-group mb-3">
-    <label for="vehicleCategory" class="block">Vehicle Category</label>
+    <label for="vehicleCategory" class="block">Category</label>
 
     <select name="vehicleCategory" id="vehicleCategory" class="form-control">
       <option value=" 1">Category 1</option>
