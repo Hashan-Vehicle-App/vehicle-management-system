@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\VehicleCategory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -51,5 +53,38 @@ class AdminController extends Controller
 
     public function showAddVehicle() {
         return view('admin.addVehicle');
+    }
+
+    public function showManageVehicleCategories() {
+
+        $vehicleCategories = VehicleCategory::all();
+
+        return view('admin.settings.manageVehicleCategories', ['vehicleCategories' => $vehicleCategories]);
+    }
+
+    public function createVehicleCategory(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'vehicleCategoryName' => ['required']
+        ]);
+
+        
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        // Retrive the validated input
+        $validated = $validator->validated();
+
+        // Create new vehicle category
+        $newVehicleCategory = new VehicleCategory;
+
+        $newVehicleCategory->title = $request->vehicleCategoryName;
+
+        $result = $newVehicleCategory->save();
+
+        if ($result) {
+            return back()->with('success', 'Category was created!');
+        }
     }
 }

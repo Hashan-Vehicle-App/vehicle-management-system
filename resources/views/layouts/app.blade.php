@@ -32,6 +32,9 @@
             <li>
               <a href="{{ route('addVehicle') }}"><i class="fas fa-cog mr-2"></i> Add Vehicle</a>
             </li>
+            <li>
+              <a href="{{ route('manageVehicleCategories') }}"><i class="fas fa-cog mr-2"></i> Vehicle Categories</a>
+            </li>
           </ul>
         </nav>
       </div>
