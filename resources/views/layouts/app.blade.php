@@ -30,7 +30,7 @@
               <a href="#"><i class="fas fa-cog mr-2"></i> Settings</a>
             </li>
             <li>
-              <a href="{{ route('addVehicle') }}"><i class="fas fa-cog mr-2"></i> Add Vehicle</a>
+              <a href="{{ route('manageVehicles') }}"><i class="fas fa-cog mr-2"></i> Vehicles</a>
             </li>
             <li>
               <a href="{{ route('manageVehicleCategories') }}"><i class="fas fa-cog mr-2"></i> Vehicle Categories</a>

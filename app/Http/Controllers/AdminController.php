@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\VehicleCategory;
+use App\Models\Vehicle;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -51,10 +52,47 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function showAddVehicle() {
-        return view('admin.addVehicle');
+    /* Manage Vehicles */
+    public function showManageVehicles() {
+
+        $vehicleCategories = VehicleCategory::all();
+        $vehicles = Vehicle::with('category')->get();
+        
+        error_log('vehicles: ' . $vehicles);
+
+        return view('admin.settings.manageVehicles', [
+            'vehicleCategories' => $vehicleCategories, 
+            'vehicles' => $vehicles
+        ]);
     }
 
+    public function createVehicle(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'vehicleNo' => 'required|min:7|max:8',
+            'vehicleCategory' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        // Create new vehicle
+        $newVehicle = new Vehicle;
+
+        $newVehicle->vehicle_no = $request->vehicleNo;
+        $newVehicle->category_id = $request->vehicleCategory;
+
+        $result = $newVehicle->save();
+
+        if ($result) {
+            return back()->with('success', 'Vehicle was created successfully!');
+        }
+
+    }
+    /* End */
+
+    /* Manage vehicle categories */
     public function showManageVehicleCategories() {
 
         $vehicleCategories = VehicleCategory::all();
@@ -64,21 +102,16 @@ class AdminController extends Controller
 
     public function createVehicleCategory(Request $request) {
         $validator = Validator::make($request->all(), [
-            'vehicleCategoryName' => ['required']
+            'vehicleCategoryName' => 'required'
         ]);
-
-        
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        // Retrive the validated input
-        $validated = $validator->validated();
-
         // Create new vehicle category
         $newVehicleCategory = new VehicleCategory;
-
+        
         $newVehicleCategory->title = $request->vehicleCategoryName;
 
         $result = $newVehicleCategory->save();
@@ -87,4 +120,5 @@ class AdminController extends Controller
             return back()->with('success', 'Category was created!');
         }
     }
+    /* End */
 }

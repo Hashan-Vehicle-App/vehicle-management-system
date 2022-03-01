@@ -24,7 +24,8 @@ Route::post('/admin/login', [AdminController::class, 'doLogin']);
 
 Route::middleware('auth.admin')->group(function() {
     Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('adminDashboard');
-    Route::get('/admin/settings/add-vehicle', [AdminController::class, 'showAddVehicle'])->name('addVehicle');
+    Route::get('/admin/settings/vehicles', [AdminController::class, 'showManageVehicles'])->name('manageVehicles');
+    Route::post('/admin/settings/vehicles', [AdminController::class, 'createVehicle'])->name('createVehicle');
 
     Route::get('admin/settings/vehicle-categories', [AdminController::class, 'showManageVehicleCategories'])->name('manageVehicleCategories');
     Route::post('admin/settings/vehicle-categories', [AdminController::class, 'createVehicleCategory']);
