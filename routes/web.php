@@ -19,9 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/login', [AdminController::class, 'showLogin']);
-Route::post('/admin/login', [AdminController::class, 'login'])->middleware('alreadyLoggedIn');
+Route::get('/admin/login', [AdminController::class, 'login'])->name('adminLogin');
+Route::post('/admin/login', [AdminController::class, 'doLogin']);
 
-Route::group(['middleware' => ['auth.admin']], function() {
-    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard']);
+Route::middleware('auth.admin')->group(function() {
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('adminDashboard');
+    Route::get('/admin/settings/add-vehicle', [AdminController::class, 'showAddVehicle'])->name('addVehicle');
+
+    Route::post('/admin/logout', [AdminController::class, 'logout'])->name('adminLogout');
 });

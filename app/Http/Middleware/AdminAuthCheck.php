@@ -18,10 +18,10 @@ class AdminAuthCheck
     public function handle(Request $request, Closure $next)
     {
 
-        if (!$request->session()->has('loginId')) {
-            return redirect('admin/login')->withErrors('You must be logged in');
+        if(Auth::check()) {
+            return $next($request);
         }
 
-        return $next($request);
+        return redirect()->route('adminLogin');
     }
 }

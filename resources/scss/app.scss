@@ -2,6 +2,15 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
 @import "./core/core";
+@import "./utils/utils";
 @import "./form.scss";
 @import "./views/views";
+
+@import "./layouts/app-layout.scss";
+@import "./layouts/auth-layout.scss";
