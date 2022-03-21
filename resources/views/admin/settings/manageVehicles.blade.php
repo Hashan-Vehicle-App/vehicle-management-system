@@ -52,7 +52,7 @@
 </form>
 
 <!-- Display vehicles -->
-<div>
+<div class="bg-white p-3 rounded shadow-sm">
 
   <h3>Vehicles</h3>
 
@@ -71,7 +71,7 @@
         <tr class="border-b border-zinc-400">
           <td>{{ $vehicle->vehicle_no }}</td>
           <td>{{ $vehicle->category->title }}</td>
-          <td>{{ $vehicle->status }}</td>
+          <td><div class="badge bg-primary">{{ $vehicle->status }}</div></td>
         </tr>
 
       @endforeach

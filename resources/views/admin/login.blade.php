@@ -33,7 +33,7 @@
   </div>
 
   <div class="d-flex justify-content-center">
-    <button type="submit" role="button" class="btn btn-primary">Login</button>
+    <button type="submit" role="button" class="btn btn-accent">Login</button>
   </div>
 </form>
 @endsection

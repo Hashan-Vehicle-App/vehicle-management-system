@@ -51,7 +51,7 @@
             <li>
               <form action="{{ route('adminLogout') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary px-4 py-2 rounded-sm bg-primary text-white"
+                <button type="submit" class="btn btn-default"
                   style="font-weight: 500">Logout</button>
               </form>
             </li>
