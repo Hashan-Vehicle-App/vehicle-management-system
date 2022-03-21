@@ -21,37 +21,37 @@
         <nav class="app-nav">
           <ul>
             <li>
-              <a href="{{ route('adminDashboard') }}" class="active"><i class="fab fa-chrome mr-2"></i> Dashboard</a>
+              <a href="{{ route('adminDashboard') }}" class="active">Dashboard</a>
             </li>
             <li>
-              <a href="#"><i class="fas fa-chart-line  mr-2"></i> Reports</a>
+              <a href="#">Reports</a>
             </li>
             <li>
-              <a href="#"><i class="fas fa-cog mr-2"></i> Settings</a>
+              <a href="#">Settings</a>
             </li>
             <li>
-              <a href="{{ route('manageVehicles') }}"><i class="fas fa-cog mr-2"></i> Vehicles</a>
+              <a href="{{ route('manageVehicles') }}">Vehicles</a>
             </li>
             <li>
-              <a href="{{ route('manageVehicleCategories') }}"><i class="fas fa-cog mr-2"></i> Vehicle Categories</a>
+              <a href="{{ route('manageVehicleCategories') }}">Vehicle Categories</a>
             </li>
           </ul>
         </nav>
       </div>
     </div>
 
-    <div id="app-right-column" class="w-full">
-      <header id="app-header" class="flex justify-between">
+    <div id="app-right-column" class="w-100">
+      <header id="app-header" class="d-flex justify-content-between">
         <div class="page-title">
           @yield('title')
         </div>
 
         <div class="header-nav">
-          <ul>
+          <ul class="list-unstyled">
             <li>
               <form action="{{ route('adminLogout') }}" method="POST">
                 @csrf
-                <button type="submit" class="px-4 py-2 rounded-sm bg-primary leading-4 text-white"
+                <button type="submit" class="btn btn-primary px-4 py-2 rounded-sm bg-primary text-white"
                   style="font-weight: 500">Logout</button>
               </form>
             </li>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form action="{{ route('createVehicle') }}" method="POST" style="max-width: 400px">
+<form action="{{ route('createVehicle') }}" method="POST" style="max-width: 400px" class="mb-5">
   @csrf
 
   <!-- Show success message -->
@@ -27,7 +27,7 @@
     @enderror
   </div>
 
-  <div class="form-group mb-3">
+  <div class="form-group mb-4">
     <label for="vehicleCategory" class="block">Category</label>
 
     <!-- Populate vehicle categories -->
@@ -46,19 +46,19 @@
     @enderror
   </div>
 
-  <div class="mt-6">
+  <div>
     <button type="submit" role="button" class="btn btn-primary">Add Vehicle</button>
   </div>
 </form>
 
 <!-- Display vehicles -->
-<div class="mt-10">
+<div>
 
-  <h3 class="underline">Vehicles</h3>
+  <h3>Vehicles</h3>
 
   @if($vehicles)
 
-    <table class="w-full">
+    <table class="table table-bordered">
 
       <tr>
         <th class="text-left">Vehicle No</th>
@@ -69,9 +69,9 @@
       @foreach ($vehicles as $vehicle)
 
         <tr class="border-b border-zinc-400">
-          <td class="py-3">{{ $vehicle->vehicle_no }}</td>
-          <td class="py-3">{{ $vehicle->category->title }}</td>
-          <td class="py-3">{{ $vehicle->status }}</td>
+          <td>{{ $vehicle->vehicle_no }}</td>
+          <td>{{ $vehicle->category->title }}</td>
+          <td>{{ $vehicle->status }}</td>
         </tr>
 
       @endforeach

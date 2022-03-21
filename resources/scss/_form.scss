@@ -12,12 +12,6 @@ select {
 .form-group {
     label {
         font-size: 0.9em;
-    }
-
-    .form-control {
-        display: block;
-        width: 100%;
-        border: 1px solid $grayLight;
-        border-radius: 2px;
+        margin-bottom: 0.25rem;
     }
 }

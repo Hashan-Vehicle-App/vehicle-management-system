@@ -5,13 +5,9 @@
 
 #app-left-column {
     width: 360px;
-    background-image: url("/img/truck2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
 
     .inner-container {
-        background-color: rgba($color: #1b1b1b, $alpha: 0.85);
+        background-color: #336bb4;
         height: 100%;
     }
 }
@@ -19,7 +15,7 @@
 #app-header {
     height: 65px;
     box-shadow: 0px 1px 8px rgba($color: #000000, $alpha: 0.15);
-    background-color: #fff;
+    background-color: #ffffff;
     width: 100%;
     padding: 1rem 2rem;
 
@@ -47,7 +43,7 @@
         color: #fff;
         font-size: 1.75em;
         font-weight: bold;
-        padding: 0.75rem 1rem 0.75rem 3.25rem;
+        padding: 0.75rem 1rem 0.75rem 2rem;
         border-bottom: 1px solid rgba($color: #ffffff, $alpha: 0.15);
     }
 
@@ -56,26 +52,35 @@
 
         ul {
             li {
-                margin-bottom: 1rem;
+                display: block;
+                padding: 1rem 0;
+                &:not(:last-child) {
+                    border-bottom: 1px solid rgba($color: #ffffff, $alpha: 0.15);
+                }
 
                 a {
-                    display: block;
+                    //display: block;
                     color: #fff;
-                    padding: 1em 1.25em;
-                    border-radius: 4px;
                     font-weight: 500;
-                    line-height: 1.25;
-                    display: flex;
-                    align-items: center;
-                    transition: background-color 0.1s linear;
-
-                    > i {
-                        font-size: 1.25em;
-                    }
+                    position: relative;
+                    text-decoration: none;
 
                     &.active,
                     &:hover {
-                        background-color: $grayDark;
+                        //color: #dfaf2e;
+                        //border-bottom: 3px solid #dfaf2e;
+
+                        &::before {
+                            content: "";
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: -8px;
+                            bottom: 0;
+                            width: 3px;
+                            height: 100%;
+                            background-color: #dfaf2e;
+                        }
                     }
                 }
             }
