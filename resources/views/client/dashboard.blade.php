@@ -3,5 +3,5 @@
 @section('title', 'Dashboard')
 
 @section('content')
-<p>This is admin dashboard</p>
+<p>This is client dashboard</p>
 @endsection

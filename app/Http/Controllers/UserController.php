@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -54,5 +55,22 @@ class UserController extends Controller
         } 
 
         return response($response, 200);
+    }
+
+    // Logout for all users
+    public function logout(Request $request) {
+        $user = Auth::user();
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($user->user_role === 'admin') {
+            return redirect()->route('adminLogin');
+        } 
+
+        return redirect()->route('clientLogin');
     }
 }

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
-use App\Models\VehicleCategory;
-use App\Models\Vehicle;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+
+use App\Models\User;
+use App\Models\VehicleCategory;
+use App\Models\Vehicle;
 
 class AdminController extends Controller
 {
@@ -29,6 +30,12 @@ class AdminController extends Controller
             'username' => ['required'],
             'password' => ['required']
         ]);
+
+        $user = User::where('username', $request->username)->first();
+
+        if (!($user && $user->user_role == 'admin')) {
+            return back()->withInput()->withErrors(['message' => 'Invalid user']);
+        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

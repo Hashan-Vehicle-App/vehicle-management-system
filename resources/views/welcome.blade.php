@@ -8,7 +8,8 @@
 
 <body>
   <div>
-    <a href="{{ route('adminLogin') }}">Admin Login</a>
+    <a href="{{ route('adminLogin') }}">Admin Login</a><br>
+    <a href="{{ route('clientLogin') }}">Client Login</a>
   </div>
 </body>
 

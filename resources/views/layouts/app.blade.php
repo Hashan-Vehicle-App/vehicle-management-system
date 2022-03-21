@@ -49,7 +49,7 @@
         <div class="header-nav">
           <ul class="list-unstyled">
             <li>
-              <form action="{{ route('adminLogout') }}" method="POST">
+              <form action="{{ route('userLogout') }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-default"
                   style="font-weight: 500">Logout</button>
