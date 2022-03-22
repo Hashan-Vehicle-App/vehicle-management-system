@@ -52,4 +52,11 @@ class VehicleCategoryController extends Controller
             return back()->with('success', 'Vehicle category successfully updated.');
         }
     }
+
+    public function deleteVehicleCategory($id)
+    {
+        VehicleCategory::destroy($id);
+
+        return back()->with('delete', 'Vehicle category successfully deleted.');
+    }
 }

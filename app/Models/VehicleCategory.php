@@ -23,4 +23,15 @@ class VehicleCategory extends Model
     {
         return $this->hasMany(Vehicle::class, 'id')->where('status', 'available');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::deleting(function ($vehicleCategory) { // before delete() method call this
+            $vehicleCategory->vehicles()->each(function ($vehicle) {
+                $vehicle->delete(); // <-- direct deletion
+            });
+        });
+    }
 }

@@ -58,4 +58,11 @@ class VehicleController extends Controller
             return back()->with('success', 'Vehicle successfully updated.');
         }
     }
+
+    public function deleteVehicle($id)
+    {
+        Vehicle::destroy($id);
+
+        return back()->with('delete', 'Vehicle successfully deleted.');
+    }
 }

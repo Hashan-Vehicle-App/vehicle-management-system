@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section('title', 'Vehicle Categories')
+@section('title', 'Manage Vehicle Categories')
 
 @section('content')
 
@@ -12,6 +12,15 @@
 
   <div class="mb-4">
     <div class="success">{{ session('success') }}</div>
+  </div>
+
+  @endif
+
+  <!-- Show deleted message -->
+  @if (session('delete'))
+
+  <div class="mb-4">
+    <div class="error">{{ session('delete') }}</div>
   </div>
 
   @endif
@@ -36,46 +45,59 @@
 </form>
 
 <!-- Display categories -->
-<div>
+<div class="rounded shadow-sm" style="overflow: hidden;">
 
-  @if($vehicleCategories)
+  <div class="px-3 pt-3 pb-2" style="background-color: #f5f5f5">
+    <h5 class="mb-0">Vehicle Categories</h5>
+  </div>
 
-  <table class="w-100 table table-bordered">
+  <div class="bg-white p-3">
+    @if($vehicleCategories)
 
-    <thead>
-      <tr>
-        <th>Category</th>
-        <th>No. of Vehicles</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
+    <table class="w-100 table table-bordered">
 
-    <tbody>
-      @foreach ($vehicleCategories as $category)
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>No. of Vehicles</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-      <tr>
-        <td>{{ $category->title }}</td>
-        <td>1</td>
-        <td class="text-center">
-          <!-- Edit vehicle link -->
-          <a href="{{ route('showEditVehicleCategory', ['id' => $category->id]) }}" class="text-accent cursor-pointer"><i class="fa-solid fa-pen-to-square"></i></a>
-        </td>
-        <td class="text-center">
-          <span class="text-danger cursor-pointer"><i class="fa-solid fa-trash-can"></i></span>
-        </td>
-      </tr>
+      <tbody>
+        @foreach ($vehicleCategories as $category)
 
-      @endforeach
-    </tbody>
+        <tr>
+          <td>{{ $category->title }}</td>
+          <td>1</td>
+          <td class="text-center">
+            <!-- Edit vehicle link -->
+            <a href="{{ route('showEditVehicleCategory', ['id' => $category->id]) }}" class="btn text-accent cursor-pointer"><i class="fa-solid fa-pen-to-square"></i></a>
+          </td>
+          <td class="text-center">
+            <form action="{{ route('deleteVehicleCategory', ['id' => $category->id]) }}" method="POST" onsubmit="return confirm('Are you sure?')">
 
-  </table>
+              @csrf
+              @method('DELETE')
 
-  @else
+              <button type="submit" class="btn text-danger cursor-pointer"><i class="fa-solid fa-trash-can"></i></button>
 
-  <p>No categories</p>
+            </form>
+          </td>
+        </tr>
 
-  @endif
+        @endforeach
+      </tbody>
+
+    </table>
+
+    @else
+
+    <p>No categories</p>
+
+    @endif
+  </div>
 
 </div>
 

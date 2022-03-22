@@ -40,10 +40,12 @@ Route::middleware('auth.admin')->group(function () {
     // Vehicle routes
     Route::post('/vehicles', [VehicleController::class, 'createVehicle'])->name('createVehicle');
     Route::put('/vehicles/{id}', [VehicleController::class, 'updateVehicle'])->name('updateVehicle');
+    Route::delete('/vehicles/{id}', [VehicleController::class, 'deleteVehicle'])->name('deleteVehicle');
 
     // Vehicle category routes
     Route::post('/vehicle-categories', [VehicleCategoryController::class, 'createVehicleCategory'])->name('createVehicleCategory');
     Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'updateVehicleCategory'])->name('updateVehicleCategory');
+    Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'deleteVehicleCategory'])->name('deleteVehicleCategory');
 
     // Other
     Route::post('/logout', [UserController::class, 'logout'])->name('userLogout');
