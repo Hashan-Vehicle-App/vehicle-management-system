@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
+use App\Models\VehicleCategory;
+use App\Models\Vehicle;
 
 class ClientController extends Controller
 {
-    public function login() {
-        
+    public function login()
+    {
+
         if (Auth::check()) {
             // If user logged in already
             return redirect()->route('clientDashboard');
@@ -22,7 +25,8 @@ class ClientController extends Controller
         return view('client.login');
     }
 
-    public function doLogin(Request $request) {
+    public function doLogin(Request $request)
+    {
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -42,11 +46,20 @@ class ClientController extends Controller
         return back()->withInput()->withErrors(['message' => 'Invalid credentials']);
     }
 
-    public function showDashboard() {
-        return view('client.dashboard');
+    public function showDashboard()
+    {
+        // Get only categories that has active vehicles
+        $vehicleCategories = VehicleCategory::whereHas('vehicles', function ($query) {
+            $query->where('vehicles.status', 'available');
+        })->get();
+
+        return view('client.dashboard', [
+            'vehicleCategories' => $vehicleCategories
+        ]);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();

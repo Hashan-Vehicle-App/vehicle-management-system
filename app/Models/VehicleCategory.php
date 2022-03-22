@@ -14,7 +14,13 @@ class VehicleCategory extends Model
         'title'
     ];
 
-    public function vehicles() {
-        return $this->hasMany(Vehicle::class);
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class, 'category_id');
+    }
+
+    public function hasActiveVehicles()
+    {
+        return $this->hasMany(Vehicle::class, 'id')->where('status', 'available');
     }
 }

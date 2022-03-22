@@ -15,8 +15,9 @@ use App\Models\Vehicle;
 class AdminController extends Controller
 {
 
-    public function login() {
-        
+    public function login()
+    {
+
         if (Auth::check()) {
             // If user logged in already
             return redirect()->route('adminDashboard');
@@ -25,7 +26,8 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function doLogin(Request $request) {
+    public function doLogin(Request $request)
+    {
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -45,7 +47,8 @@ class AdminController extends Controller
         return back()->withInput()->withErrors(['message' => 'Invalid credentials']);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();
@@ -55,25 +58,26 @@ class AdminController extends Controller
         return redirect()->route('adminLogin');
     }
 
-    public function showDashboard() {
+    public function showDashboard()
+    {
         return view('admin.dashboard');
     }
 
     /* Manage Vehicles */
-    public function showManageVehicles() {
+    public function showManageVehicles()
+    {
 
         $vehicleCategories = VehicleCategory::all();
         $vehicles = Vehicle::with('category')->get();
-        
-        error_log('vehicles: ' . $vehicles);
 
         return view('admin.settings.manageVehicles', [
-            'vehicleCategories' => $vehicleCategories, 
+            'vehicleCategories' => $vehicleCategories,
             'vehicles' => $vehicles
         ]);
     }
 
-    public function createVehicle(Request $request) {
+    public function createVehicle(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'vehicleNo' => 'required|min:7|max:8',
@@ -95,19 +99,20 @@ class AdminController extends Controller
         if ($result) {
             return back()->with('success', 'Vehicle was created successfully!');
         }
-
     }
     /* End */
 
     /* Manage vehicle categories */
-    public function showManageVehicleCategories() {
+    public function showManageVehicleCategories()
+    {
 
         $vehicleCategories = VehicleCategory::all();
 
         return view('admin.settings.manageVehicleCategories', ['vehicleCategories' => $vehicleCategories]);
     }
 
-    public function createVehicleCategory(Request $request) {
+    public function createVehicleCategory(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'vehicleCategoryName' => 'required'
         ]);
@@ -118,7 +123,7 @@ class AdminController extends Controller
 
         // Create new vehicle category
         $newVehicleCategory = new VehicleCategory;
-        
+
         $newVehicleCategory->title = $request->vehicleCategoryName;
 
         $result = $newVehicleCategory->save();
