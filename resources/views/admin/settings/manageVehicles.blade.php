@@ -66,10 +66,10 @@
     <h5>Vehicles</h5>
   </div>
 
-  <div class="bg-white p-3">
+  <div class="bg-white p-4">
     @if($vehicles)
 
-    <table class="table table-bordered">
+    <table class="table table-bordered mb-0">
 
       <thead>
         <tr>

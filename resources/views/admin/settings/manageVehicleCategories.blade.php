@@ -51,10 +51,10 @@
     <h5 class="mb-0">Vehicle Categories</h5>
   </div>
 
-  <div class="bg-white p-3">
+  <div class="bg-white p-4">
     @if($vehicleCategories)
 
-    <table class="w-100 table table-bordered">
+    <table class="w-100 table table-bordered mb-0">
 
       <thead>
         <tr>
