@@ -76,29 +76,14 @@ class AdminController extends Controller
         ]);
     }
 
-    public function createVehicle(Request $request)
+    public function showEditVehicle($id)
     {
+        $vehicleCategories = VehicleCategory::all();
 
-        $validator = Validator::make($request->all(), [
-            'vehicleNo' => 'required|min:7|max:8',
-            'vehicleCategory' => 'required',
-        ]);
+        $vehicles = Vehicle::all();
+        $vehicle = $vehicles->find($id);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        // Create new vehicle
-        $newVehicle = new Vehicle;
-
-        $newVehicle->vehicle_no = $request->vehicleNo;
-        $newVehicle->category_id = $request->vehicleCategory;
-
-        $result = $newVehicle->save();
-
-        if ($result) {
-            return back()->with('success', 'Vehicle was created successfully!');
-        }
+        return view('admin.settings.editVehicle', ['vehicle' => $vehicle, 'vehicleCategories' => $vehicleCategories]);
     }
     /* End */
 
@@ -111,26 +96,12 @@ class AdminController extends Controller
         return view('admin.settings.manageVehicleCategories', ['vehicleCategories' => $vehicleCategories]);
     }
 
-    public function createVehicleCategory(Request $request)
+    public function showEditVehicleCategory($id)
     {
-        $validator = Validator::make($request->all(), [
-            'vehicleCategoryName' => 'required'
-        ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
+        $vehicleCategory = VehicleCategory::find($id);
 
-        // Create new vehicle category
-        $newVehicleCategory = new VehicleCategory;
-
-        $newVehicleCategory->title = $request->vehicleCategoryName;
-
-        $result = $newVehicleCategory->save();
-
-        if ($result) {
-            return back()->with('success', 'Category was created!');
-        }
+        return view('admin.settings.editVehicleCategory', ['vehicleCategory' => $vehicleCategory]);
     }
     /* End */
 }

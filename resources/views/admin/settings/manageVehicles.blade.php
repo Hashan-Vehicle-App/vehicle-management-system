@@ -63,6 +63,8 @@
       <th class="text-left">Vehicle No</th>
       <th class="text-left">Category</th>
       <th class="text-left">Status</th>
+      <th></th>
+      <th></th>
     </tr>
 
     @foreach ($vehicles as $vehicle)
@@ -72,6 +74,13 @@
       <td>{{ $vehicle->category->title }}</td>
       <td>
         <div class="badge bg-primary">{{ $vehicle->status }}</div>
+      </td>
+      <td class="text-center">
+        <!-- Edit vehicle link -->
+        <a href="{{ route('showEditVehicle', ['id' => $vehicle->id]) }}" class="text-accent cursor-pointer"><i class="fa-solid fa-pen-to-square"></i></a>
+      </td>
+      <td class="text-center">
+        <span class="text-danger cursor-pointer"><i class="fa-solid fa-trash-can"></i></span>
       </td>
     </tr>
 

@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminLoginController;
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\VehicleCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,22 +27,34 @@ Route::get('/', function () {
 Route::get('/admin/login', [AdminController::class, 'login'])->name('adminLogin');
 Route::post('/admin/login', [AdminController::class, 'doLogin']);
 
-Route::middleware('auth.admin')->group(function() {
+Route::middleware('auth.admin')->group(function () {
+    // Admin routes
     Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('adminDashboard');
+
+    // Admin setting routes
     Route::get('/admin/settings/vehicles', [AdminController::class, 'showManageVehicles'])->name('manageVehicles');
-    Route::post('/admin/settings/vehicles', [AdminController::class, 'createVehicle'])->name('createVehicle');
     Route::get('admin/settings/vehicle-categories', [AdminController::class, 'showManageVehicleCategories'])->name('manageVehicleCategories');
-    Route::post('admin/settings/vehicle-categories', [AdminController::class, 'createVehicleCategory']);
-    
+    Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
+    Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
+
+    // Vehicle routes
+    Route::post('/vehicles', [VehicleController::class, 'createVehicle'])->name('createVehicle');
+    Route::put('/vehicles/{id}', [VehicleController::class, 'updateVehicle'])->name('updateVehicle');
+
+    // Vehicle category routes
+    Route::post('/vehicle-categories', [VehicleCategoryController::class, 'createVehicleCategory'])->name('createVehicleCategory');
+    Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'updateVehicleCategory'])->name('updateVehicleCategory');
+
+    // Other
     Route::post('/logout', [UserController::class, 'logout'])->name('userLogout');
 });
 
 // Client
 Route::get('/client/login', [ClientController::class, 'login'])->name('clientLogin');
-Route::post('/client/login', [ClientController:: class, 'doLogin']);
+Route::post('/client/login', [ClientController::class, 'doLogin']);
 
-Route::middleware('auth.client')->group(function() {
+Route::middleware('auth.client')->group(function () {
     Route::get('/client/dashboard', [ClientController::class, 'showDashboard'])->name('clientDashboard');
-    
+
     Route::post('/logout', [UserController::class, 'logout'])->name('userLogout');
 });
