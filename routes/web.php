@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleCategoryController;
@@ -36,6 +37,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('admin/settings/vehicle-categories', [AdminController::class, 'showManageVehicleCategories'])->name('manageVehicleCategories');
     Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
     Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
+    Route::get('admin/settings/locations', [AdminController::class, 'showManageLocations'])->name('manageLocations');
 
     // Vehicle routes
     Route::post('/vehicles', [VehicleController::class, 'createVehicle'])->name('createVehicle');
@@ -46,6 +48,9 @@ Route::middleware('auth.admin')->group(function () {
     Route::post('/vehicle-categories', [VehicleCategoryController::class, 'createVehicleCategory'])->name('createVehicleCategory');
     Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'updateVehicleCategory'])->name('updateVehicleCategory');
     Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'deleteVehicleCategory'])->name('deleteVehicleCategory');
+
+    // Location routes
+    Route::post('/locations', [LocationController::class, 'createLocation'])->name('createLocation');
 
     // Other
     Route::post('/logout', [UserController::class, 'logout'])->name('userLogout');

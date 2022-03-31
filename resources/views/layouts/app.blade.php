@@ -35,6 +35,9 @@
             <li>
               <a href="{{ route('manageVehicleCategories') }}">Vehicle Categories</a>
             </li>
+            <li>
+              <a href="{{ route('manageLocations') }}">Locations</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -51,8 +54,7 @@
             <li>
               <form action="{{ route('userLogout') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-default"
-                  style="font-weight: 500">Logout</button>
+                <button type="submit" class="btn btn-default" style="font-weight: 500">Logout</button>
               </form>
             </li>
           </ul>

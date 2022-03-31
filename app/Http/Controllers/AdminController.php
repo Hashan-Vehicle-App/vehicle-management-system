@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\VehicleCategory;
 use App\Models\Vehicle;
+use App\Models\Location;
 
 class AdminController extends Controller
 {
@@ -103,5 +102,13 @@ class AdminController extends Controller
 
         return view('admin.settings.editVehicleCategory', ['vehicleCategory' => $vehicleCategory]);
     }
-    /* End */
+
+    /* Manage vehicle categories */
+    public function showManageLocations()
+    {
+
+        $locations = Location::all();
+
+        return view('admin.settings.manageLocations', ['locations' => $locations]);
+    }
 }

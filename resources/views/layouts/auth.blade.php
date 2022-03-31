@@ -20,6 +20,9 @@
         @yield('content')
       </div>
     </div>
+
+
+    <a href="/" class="position-fixed" style="bottom: 20px;">Go to Home</a>
   </main>
 </body>
 
