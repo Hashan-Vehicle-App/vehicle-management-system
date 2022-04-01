@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Location;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Hash;
@@ -53,8 +54,11 @@ class ClientController extends Controller
             $query->where('vehicles.status', 'available');
         })->get();
 
+        // Get locations
+        $locations = Location::all();
+
         return view('client.dashboard', [
-            'vehicleCategories' => $vehicleCategories
+            'vehicleCategories' => $vehicleCategories, 'locations' => $locations
         ]);
     }
 
