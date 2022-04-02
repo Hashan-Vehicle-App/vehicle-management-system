@@ -10,11 +10,12 @@ use App\Models\User;
 use App\Models\VehicleCategory;
 use App\Models\Vehicle;
 use App\Models\Location;
+use Inertia\Inertia;
 
 class AdminController extends Controller
 {
 
-    public function login()
+    public function showLogin()
     {
 
         if (Auth::check()) {
@@ -22,7 +23,7 @@ class AdminController extends Controller
             return redirect()->route('adminDashboard');
         }
 
-        return view('admin.login');
+        return Inertia::render('LoginPage');
     }
 
     public function doLogin(Request $request)

@@ -8,6 +8,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleCategoryController;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,11 @@ use App\Http\Controllers\VehicleCategoryController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Inertia::render('Welcome');
 });
 
 // Admin
-Route::get('/admin/login', [AdminController::class, 'login'])->name('adminLogin');
+Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('adminLogin');
 Route::post('/admin/login', [AdminController::class, 'doLogin']);
 
 Route::middleware('auth.admin')->group(function () {

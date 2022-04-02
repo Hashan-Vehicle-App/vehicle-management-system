@@ -1,12 +1,12 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/webfonts/fa-brands-400.ttf": "/webfonts/fa-brands-400.ttf",
-    "/webfonts/fa-brands-400.woff2": "/webfonts/fa-brands-400.woff2",
-    "/webfonts/fa-regular-400.ttf": "/webfonts/fa-regular-400.ttf",
-    "/webfonts/fa-regular-400.woff2": "/webfonts/fa-regular-400.woff2",
-    "/webfonts/fa-solid-900.ttf": "/webfonts/fa-solid-900.ttf",
-    "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2",
-    "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf",
-    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2"
+    "/js/app.js": "/js/app.js?id=559d8a38bf32585a4dcc",
+    "/css/app.css": "/css/app.css?id=550bc6ade5fb4f591bfa",
+    "/webfonts/fa-brands-400.ttf": "/webfonts/fa-brands-400.ttf?id=41dfd9a52e45c79dcf9d",
+    "/webfonts/fa-brands-400.woff2": "/webfonts/fa-brands-400.woff2?id=3be2b051b5220dd6c8d4",
+    "/webfonts/fa-regular-400.ttf": "/webfonts/fa-regular-400.ttf?id=d22c9aed113724cdc240",
+    "/webfonts/fa-regular-400.woff2": "/webfonts/fa-regular-400.woff2?id=1e33410fccf1f94e2e5c",
+    "/webfonts/fa-solid-900.ttf": "/webfonts/fa-solid-900.ttf?id=8e571dfb1be9d59a4f30",
+    "/webfonts/fa-solid-900.woff2": "/webfonts/fa-solid-900.woff2?id=c32aa39ef35a9568bbce",
+    "/webfonts/fa-v4compatibility.ttf": "/webfonts/fa-v4compatibility.ttf?id=9d939fb4003070bebd79",
+    "/webfonts/fa-v4compatibility.woff2": "/webfonts/fa-v4compatibility.woff2?id=be1e731c0c591005eb39"
 }
