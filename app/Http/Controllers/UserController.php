@@ -12,10 +12,11 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         $existingUsers = User::all()->where('username', $request->username);
 
-        if(count($existingUsers)) {
+        if (count($existingUsers)) {
             return response()->json([
                 'status' => false,
                 'message' => 'Username already exists',
@@ -30,7 +31,7 @@ class UserController extends Controller
 
         $result = $newUser->save();
 
-        if($result) {
+        if ($result) {
             return response()->json([
                 'status' => true,
                 'message' => 'User created successfully',
@@ -43,22 +44,24 @@ class UserController extends Controller
         }
     }
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $user = User::where('username', $request->username)->first();
 
-        if(Hash::check($request->password, $user->password)) {
+        if (Hash::check($request->password, $user->password)) {
             $token = $user->createToken('api_token')->plainTextToken;
 
             $user->tokens()->delete();
 
             $response = ['data' => new UserResource($user)];
-        } 
+        }
 
         return response($response, 200);
     }
 
     // Logout for all users
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $user = Auth::user();
 
         Auth::logout();
@@ -68,9 +71,9 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         if ($user->user_role === 'admin') {
-            return redirect()->route('adminLogin');
-        } 
+            return redirect()->route('admin.login');
+        }
 
-        return redirect()->route('clientLogin');
+        return redirect()->route('client.login');
     }
 }

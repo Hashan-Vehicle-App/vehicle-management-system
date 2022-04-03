@@ -4,13 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
+use App\Models\VehicleCategory;
 use App\Models\Vehicle;
+use Inertia\Inertia;
 
 class VehicleController extends Controller
 {
 
-    public function createVehicle(Request $request)
+    public function index()
+    {
+
+        $vehicles = Vehicle::with('category')->get();
+
+        return Inertia::render('Vehicles/Index', ['vehicles' => $vehicles]);
+    }
+
+    public function create()
+    {
+
+        $vehicleCategories = VehicleCategory::all();
+
+        return Inertia::render('Vehicles/Create', ['vehicleCategories' => $vehicleCategories]);
+    }
+
+    public function store(Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -19,7 +38,7 @@ class VehicleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
 
         // Create new vehicle
@@ -31,11 +50,22 @@ class VehicleController extends Controller
         $result = $newVehicle->save();
 
         if ($result) {
-            return back()->with('success', 'Vehicle successfully created.');
+            //return Redirect::back()->with('success', 'Vehicle successfully created.');
+            return Redirect::route('vehicle.index')->with('success', 'Vehicle created successfully');
         }
     }
 
-    public function updateVehicle($id, Request $request)
+    public function edit($id)
+    {
+        $vehicleCategories = VehicleCategory::all();
+
+        $vehicles = Vehicle::all();
+        $vehicle = $vehicles->find($id);
+
+        return Inertia::render('Vehicles/Edit', ['vehicle' => $vehicle, 'vehicleCategories' => $vehicleCategories]);
+    }
+
+    public function update($id, Request $request)
     {
 
         $validator = Validator::make($request->all(), [
@@ -44,7 +74,7 @@ class VehicleController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
 
         $vehicle = Vehicle::find($id);
@@ -55,11 +85,11 @@ class VehicleController extends Controller
         $result = $vehicle->save();
 
         if ($result) {
-            return back()->with('success', 'Vehicle successfully updated.');
+            return Redirect::route('vehicle.index')->with('success', 'Vehicle successfully updated.');
         }
     }
 
-    public function deleteVehicle($id)
+    public function destroy($id)
     {
         Vehicle::destroy($id);
 

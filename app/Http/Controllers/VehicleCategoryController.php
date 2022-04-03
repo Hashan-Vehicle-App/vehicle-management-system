@@ -3,13 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+
 use App\Models\VehicleCategory;
+use Inertia\Inertia;
 
 class VehicleCategoryController extends Controller
+
 {
-    public function createVehicleCategory(Request $request)
+
+    public function index()
+    {
+        $vehicleCategories = VehicleCategory::all();
+        return Inertia::render('VehicleCategories/Index', ['vehicleCategories' => $vehicleCategories]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('VehicleCategories/Create');
+    }
+
+    public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'vehicleCategoryName' => 'required'
@@ -27,18 +42,26 @@ class VehicleCategoryController extends Controller
         $result = $newVehicleCategory->save();
 
         if ($result) {
-            return back()->with('success', 'Vehicle category successfully created.');
+            return Redirect::route('vehicleCategory.index');
         }
     }
 
-    public function updateVehicleCategory($id, Request $request)
+    public function edit($id)
+    {
+
+        $vehicleCategory = VehicleCategory::find($id);
+
+        return Inertia::render('VehicleCategories/Edit', ['vehicleCategory' => $vehicleCategory]);
+    }
+
+    public function update($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
             'vehicleCategoryName' => 'required'
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
 
         // Create new vehicle category
@@ -49,14 +72,14 @@ class VehicleCategoryController extends Controller
         $result = $vehicleCategory->save();
 
         if ($result) {
-            return back()->with('success', 'Vehicle category successfully updated.');
+            return Redirect::route('vehicleCategory.index')->with('success', 'Vehicle category successfully updated.');
         }
     }
 
-    public function deleteVehicleCategory($id)
+    public function destroy($id)
     {
         VehicleCategory::destroy($id);
 
-        return back()->with('delete', 'Vehicle category successfully deleted.');
+        return Redirect::route('vehicleCategory.index')->with('delete', 'Vehicle category successfully deleted.');
     }
 }

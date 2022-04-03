@@ -5,29 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
 use App\Models\VehicleCategory;
-use App\Models\Vehicle;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class ClientController extends Controller
 {
-    public function login()
+    public function showLogin()
     {
 
         if (Auth::check()) {
             // If user logged in already
-            return redirect()->route('clientDashboard');
+            //return redirect()->route('clientDashboard');
+            return Redirect::route('client.dashboard');
         }
 
-        return view('client.login');
+        return Inertia::render('Auth/ClientLoginPage');
     }
 
-    public function doLogin(Request $request)
+    public function login(Request $request)
     {
+
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -36,15 +37,15 @@ class ClientController extends Controller
         $user = User::where('username', $request->username)->first();
 
         if (!($user && $user->user_role == 'client')) {
-            return back()->withInput()->withErrors(['message' => 'Invalid user']);
+            return Redirect::back()->withErrors(['message' => 'Invalid user'])->withInput();
         }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('clientDashboard'));
+            return Redirect::intended(route('client.dashboard'));
         }
 
-        return back()->withInput()->withErrors(['message' => 'Invalid credentials']);
+        return Redirect::back()->withErrors(['message' => 'Invalid credentials']);
     }
 
     public function showDashboard()
@@ -57,9 +58,11 @@ class ClientController extends Controller
         // Get locations
         $locations = Location::all();
 
-        return view('client.dashboard', [
-            'vehicleCategories' => $vehicleCategories, 'locations' => $locations
-        ]);
+        // return view('client.dashboard', [
+        //     'vehicleCategories' => $vehicleCategories, 'locations' => $locations
+        // ]);
+
+        return Inertia::render('Dashboard/Index');
     }
 
     public function logout(Request $request)
@@ -70,6 +73,6 @@ class ClientController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('clientLogin');
+        return Redirect::route('client.login');
     }
 }

@@ -4,9 +4,9 @@ import { Link } from "@inertiajs/inertia-react";
 export default function Welcome() {
     return (
         <>
-            <Link href="/admin/login">Admin Login</Link>
+            <Link href={route("admin.login")}>Admin Login</Link>
             <br />
-            <Link href="/client/login">Client Login</Link>
+            <Link href={route("client.login")}>Client Login</Link>
         </>
     );
 }

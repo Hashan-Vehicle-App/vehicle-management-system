@@ -14,4 +14,13 @@ select {
         font-size: 0.9em;
         margin-bottom: 0.25rem;
     }
+
+    .alert {
+        font-size: var(--font-size-small);
+        padding: 0.25rem 0.5rem;
+    }
+
+    input + .alert {
+        margin-top: 0.5rem;
+    }
 }

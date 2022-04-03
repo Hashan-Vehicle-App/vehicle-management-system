@@ -19957,8 +19957,24 @@ body {
   background-color: #eeeeee;
 }
 
+:root {
+  --gray-light: #dedede;
+  --gray-lighter: #e1e1e1;
+  --gray-dark: rgb(110, 117, 128);
+  --font-base: 1rem;
+  --font-size-small: 0.875rem;
+}
+
 .bg-primary {
   background-color: #115e59;
+}
+
+.bg-primary-dark {
+  background-color: #344965;
+}
+
+.bg-primary-lightest {
+  background-color: #e2ebf5;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -19975,6 +19991,10 @@ h2, .h2 {
 
 .btn-accent {
   color: #ffffff;
+}
+
+td {
+  vertical-align: middle;
 }
 
 .error,
@@ -20012,6 +20032,13 @@ select {
   font-size: 0.9em;
   margin-bottom: 0.25rem;
 }
+.form-group .alert {
+  font-size: var(--font-size-small);
+  padding: 0.25rem 0.5rem;
+}
+.form-group input + .alert {
+  margin-top: 0.5rem;
+}
 
 #app-container {
   display: flex;
@@ -20046,7 +20073,7 @@ select {
   display: flex;
 }
 #app-header .header-nav ul li a {
-  color: #686d74;
+  color: #6e7580;
   font-weight: 500;
 }
 
@@ -20105,4 +20132,8 @@ select {
   bottom: 0;
   background-color: rgba(30, 30, 31, 0.85);
   z-index: -1;
+}
+
+#app {
+  height: 100%;
 }

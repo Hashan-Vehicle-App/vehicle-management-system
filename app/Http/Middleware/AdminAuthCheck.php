@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminAuthCheck
 {
@@ -18,10 +19,10 @@ class AdminAuthCheck
     public function handle(Request $request, Closure $next)
     {
 
-        if(Auth::check()) {
+        if (Auth::check()) {
             return $next($request);
         }
 
-        return redirect()->route('adminLogin');
+        return Redirect::route('admin.login');
     }
 }

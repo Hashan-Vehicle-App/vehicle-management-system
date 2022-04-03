@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
-use App\Models\VehicleCategory;
 use App\Models\Vehicle;
+use App\Models\VehicleCategory;
 use App\Models\Location;
+
 use Inertia\Inertia;
 
 class AdminController extends Controller
@@ -20,13 +21,13 @@ class AdminController extends Controller
 
         if (Auth::check()) {
             // If user logged in already
-            return redirect()->route('adminDashboard');
+            return redirect()->route('admin.dashboard');
         }
 
-        return Inertia::render('LoginPage');
+        return Inertia::render('Auth/AdminLoginPage');
     }
 
-    public function doLogin(Request $request)
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             'username' => ['required'],
@@ -36,15 +37,15 @@ class AdminController extends Controller
         $user = User::where('username', $request->username)->first();
 
         if (!($user && $user->user_role == 'admin')) {
-            return back()->withInput()->withErrors(['message' => 'Invalid user']);
+            return Redirect::back()->withErrors(['message' => 'Invalid user'])->withInput();
         }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('adminDashboard'));
+            return Redirect::intended(route('admin.dashboard'));
         }
 
-        return back()->withInput()->withErrors(['message' => 'Invalid credentials']);
+        return Redirect::back()->withErrors(['message' => 'Invalid credentials']);
     }
 
     public function logout(Request $request)
@@ -55,53 +56,12 @@ class AdminController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('adminLogin');
+        return Redirect::route('admin.login');
     }
 
     public function showDashboard()
     {
-        return view('admin.dashboard');
-    }
-
-    /* Manage Vehicles */
-    public function showManageVehicles()
-    {
-
-        $vehicleCategories = VehicleCategory::all();
-        $vehicles = Vehicle::with('category')->get();
-
-        return view('admin.settings.manageVehicles', [
-            'vehicleCategories' => $vehicleCategories,
-            'vehicles' => $vehicles
-        ]);
-    }
-
-    public function showEditVehicle($id)
-    {
-        $vehicleCategories = VehicleCategory::all();
-
-        $vehicles = Vehicle::all();
-        $vehicle = $vehicles->find($id);
-
-        return view('admin.settings.editVehicle', ['vehicle' => $vehicle, 'vehicleCategories' => $vehicleCategories]);
-    }
-    /* End */
-
-    /* Manage vehicle categories */
-    public function showManageVehicleCategories()
-    {
-
-        $vehicleCategories = VehicleCategory::all();
-
-        return view('admin.settings.manageVehicleCategories', ['vehicleCategories' => $vehicleCategories]);
-    }
-
-    public function showEditVehicleCategory($id)
-    {
-
-        $vehicleCategory = VehicleCategory::find($id);
-
-        return view('admin.settings.editVehicleCategory', ['vehicleCategory' => $vehicleCategory]);
+        return Inertia::render('Dashboard/Index');
     }
 
     /* Manage vehicle categories */

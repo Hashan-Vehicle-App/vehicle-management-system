@@ -26,43 +26,49 @@ Route::get('/', function () {
 });
 
 // Admin
-Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('adminLogin');
-Route::post('/admin/login', [AdminController::class, 'doLogin']);
+Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.attempt');
 
 Route::middleware('auth.admin')->group(function () {
     // Admin routes
-    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('adminDashboard');
+    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
 
     // Admin setting routes
-    Route::get('/admin/settings/vehicles', [AdminController::class, 'showManageVehicles'])->name('manageVehicles');
-    Route::get('admin/settings/vehicle-categories', [AdminController::class, 'showManageVehicleCategories'])->name('manageVehicleCategories');
+    Route::get('admin/settings/vehicles', [VehicleController::class, 'index'])->name('vehicle.index');
+    Route::get('admin/settings/vehicles/create', [VehicleController::class, 'create'])->name('vehicle.create');
+    Route::get('admin/settings/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('vehicle.edit');
+
+    Route::get('admin/settings/vehicle-categories', [VehicleCategoryController::class, 'index'])->name('vehicleCategory.index');
+    Route::get('admin/settings/vehicle-categories/create', [VehicleCategoryController::class, 'create'])->name('vehicleCategory.create');
+    Route::get('admin/settings/vehicle-categories/{id}/edit', [VehicleCategoryController::class, 'edit'])->name('vehicleCategory.edit');
+
     Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
     Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
     Route::get('admin/settings/locations', [AdminController::class, 'showManageLocations'])->name('manageLocations');
 
     // Vehicle routes
-    Route::post('/vehicles', [VehicleController::class, 'createVehicle'])->name('createVehicle');
-    Route::put('/vehicles/{id}', [VehicleController::class, 'updateVehicle'])->name('updateVehicle');
-    Route::delete('/vehicles/{id}', [VehicleController::class, 'deleteVehicle'])->name('deleteVehicle');
+    Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicle.store');
+    Route::put('/vehicles/{id}', [VehicleController::class, 'update'])->name('vehicle.update');
+    Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy'])->name('vehicle.destroy');
 
     // Vehicle category routes
-    Route::post('/vehicle-categories', [VehicleCategoryController::class, 'createVehicleCategory'])->name('createVehicleCategory');
-    Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'updateVehicleCategory'])->name('updateVehicleCategory');
-    Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'deleteVehicleCategory'])->name('deleteVehicleCategory');
+    Route::post('/vehicle-categories', [VehicleCategoryController::class, 'store'])->name('vehicleCategory.store');
+    Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'update'])->name('vehicleCategory.update');
+    Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'destroy'])->name('vehicleCategory.destroy');
 
     // Location routes
     Route::post('/locations', [LocationController::class, 'createLocation'])->name('createLocation');
 
     // Other
-    Route::post('/logout', [UserController::class, 'logout'])->name('userLogout');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
 // Client
-Route::get('/client/login', [ClientController::class, 'login'])->name('clientLogin');
-Route::post('/client/login', [ClientController::class, 'doLogin']);
+Route::get('/client/login', [ClientController::class, 'showLogin'])->name('client.login');
+Route::post('/client/login', [ClientController::class, 'login'])->name('client.login.attempt');
 
 Route::middleware('auth.client')->group(function () {
-    Route::get('/client/dashboard', [ClientController::class, 'showDashboard'])->name('clientDashboard');
+    Route::get('/client/dashboard', [ClientController::class, 'showDashboard'])->name('client.dashboard');
 
-    Route::post('/logout', [UserController::class, 'logout'])->name('userLogout');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
