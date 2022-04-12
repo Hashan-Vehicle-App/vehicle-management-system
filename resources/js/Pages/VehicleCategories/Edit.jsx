@@ -4,7 +4,7 @@ import { React, useEffect } from "react";
 import { usePage, useForm } from "@inertiajs/inertia-react";
 
 // Layouts
-import AppLayout from "../../Layouts/AppLayout";
+import AdminLayout from "../../Layouts/AdminLayout";
 
 export default function EditVehicleCategory() {
     const { vehicleCategory } = usePage().props;
@@ -20,7 +20,7 @@ export default function EditVehicleCategory() {
 
     return (
         <>
-            <AppLayout title="Create vehicle category">
+            <AdminLayout title="Create vehicle category">
                 <form
                     onSubmit={handleSubmit}
                     className="mb-5"
@@ -68,7 +68,7 @@ export default function EditVehicleCategory() {
                         </button>
                     </div>
                 </form>
-            </AppLayout>
+            </AdminLayout>
         </>
     );
 }

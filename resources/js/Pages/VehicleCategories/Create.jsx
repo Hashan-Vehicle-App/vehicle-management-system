@@ -1,10 +1,10 @@
 // Vehicle create page
 
 import { React } from "react";
-import { usePage, useForm } from "@inertiajs/inertia-react";
+import { useForm } from "@inertiajs/inertia-react";
 
 // Layouts
-import AppLayout from "../../Layouts/AppLayout";
+import AdminLayout from "../../Layouts/AdminLayout";
 
 export default function CreateVehicle() {
     const { data, setData, post, processing, errors } = useForm({
@@ -18,7 +18,7 @@ export default function CreateVehicle() {
 
     return (
         <>
-            <AppLayout title="Create vehicle category">
+            <AdminLayout title="Create vehicle category">
                 <form
                     onSubmit={handleSubmit}
                     className="mb-5"
@@ -66,7 +66,7 @@ export default function CreateVehicle() {
                         </button>
                     </div>
                 </form>
-            </AppLayout>
+            </AdminLayout>
         </>
     );
 }

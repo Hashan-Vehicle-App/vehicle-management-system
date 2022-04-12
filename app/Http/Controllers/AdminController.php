@@ -59,11 +59,6 @@ class AdminController extends Controller
         return Redirect::route('admin.login');
     }
 
-    public function showDashboard()
-    {
-        return Inertia::render('Dashboard/Index');
-    }
-
     /* Manage vehicle categories */
     public function showManageLocations()
     {

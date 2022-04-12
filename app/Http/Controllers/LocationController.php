@@ -6,9 +6,15 @@ use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 use App\Models\Location;
+use Inertia\Inertia;
 
 class LocationController extends Controller
 {
+    public function index()
+    {
+        return Inertia::render('Locations/Index');
+    }
+
     public function createLocation(Request $request)
     {
         $validator = Validator::make($request->all(), [

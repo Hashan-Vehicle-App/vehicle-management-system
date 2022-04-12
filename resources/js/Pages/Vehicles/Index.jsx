@@ -5,7 +5,7 @@ import { usePage, Link } from "@inertiajs/inertia-react";
 import { Inertia } from "@inertiajs/inertia";
 
 // Layouts
-import AppLayout from "../../Layouts/AppLayout";
+import AdminLayout from "../../Layouts/AdminLayout";
 
 export default function Vehicles() {
     const { vehicles } = usePage().props;
@@ -17,7 +17,7 @@ export default function Vehicles() {
     }
 
     return (
-        <AppLayout>
+        <AdminLayout>
             <div className="bg-white overflow-hidden rounded shadow-sm">
                 <div
                     className="px-3 pt-3 pb-2 d-flex justify-content-between align-items-center"
@@ -102,6 +102,6 @@ export default function Vehicles() {
                     )}
                 </div>
             </div>
-        </AppLayout>
+        </AdminLayout>
     );
 }

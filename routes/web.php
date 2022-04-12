@@ -8,6 +8,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleCategoryController;
+use App\Http\Controllers\DashboardController;
 use Inertia\Inertia;
 
 /*
@@ -31,7 +32,7 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 
 Route::middleware('auth.admin')->group(function () {
     // Admin routes
-    Route::get('/admin/dashboard', [AdminController::class, 'showDashboard'])->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'show'])->name('admin.dashboard');
 
     // Admin setting routes
     Route::get('admin/settings/vehicles', [VehicleController::class, 'index'])->name('vehicle.index');
@@ -44,7 +45,8 @@ Route::middleware('auth.admin')->group(function () {
 
     Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
     Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
-    Route::get('admin/settings/locations', [AdminController::class, 'showManageLocations'])->name('manageLocations');
+
+    Route::get('admin/settings/locations', [LocationController::class, 'index'])->name('location.index');
 
     // Vehicle routes
     Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicle.store');
@@ -68,7 +70,6 @@ Route::get('/client/login', [ClientController::class, 'showLogin'])->name('clien
 Route::post('/client/login', [ClientController::class, 'login'])->name('client.login.attempt');
 
 Route::middleware('auth.client')->group(function () {
-    Route::get('/client/dashboard', [ClientController::class, 'showDashboard'])->name('client.dashboard');
-
+    Route::get('/client/dashboard', [DashboardController::class, 'show'])->name('client.dashboard');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });

@@ -7,7 +7,7 @@ import "./AppLayout.scss";
 // components
 import MainMenuItem from "../Shared/MainMenuItem";
 
-export default function AppLayout({ children, title }) {
+export default function AdminLayout({ children, title }) {
     return (
         <>
             <div className="app-layout">
@@ -16,20 +16,7 @@ export default function AppLayout({ children, title }) {
                         <div className="app-title">VMS APP</div>
 
                         <nav className="app-nav">
-                            <MainMenuItem
-                                link="client.dashboard"
-                                text="Dashboard"
-                            />
-
-                            <MainMenuItem
-                                link="vehicle.index"
-                                text="Vehicles"
-                            />
-
-                            <MainMenuItem
-                                link="vehicleCategory.index"
-                                text="Vehicle Categories"
-                            />
+                            <AdminMenuItems />
                         </nav>
                     </div>
                 </div>
@@ -60,6 +47,31 @@ export default function AppLayout({ children, title }) {
                     <main className="page-content">{children}</main>
                 </div>
             </div>
+        </>
+    );
+}
+
+function AdminMenuItems() {
+    return (
+        <>
+            <MainMenuItem link="client.dashboard" text="Dashboard" />
+
+            <MainMenuItem link="vehicle.index" text="Vehicles" />
+
+            <MainMenuItem
+                link="vehicleCategory.index"
+                text="Vehicle Categories"
+            />
+
+            <MainMenuItem link="location.index" text="Locations" />
+        </>
+    );
+}
+
+function ClientMenuItems() {
+    return (
+        <>
+            <MainMenuItem link="client.dashboard" text="Dashboard" />
         </>
     );
 }

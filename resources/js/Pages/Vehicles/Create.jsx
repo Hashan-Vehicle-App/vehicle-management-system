@@ -2,7 +2,7 @@
 
 import { React } from "react";
 import { usePage, useForm } from "@inertiajs/inertia-react";
-import AppLayout from "../../Layouts/AppLayout";
+import AdminLayout from "../../Layouts/AdminLayout";
 
 export default function CreateVehicle() {
     const { vehicleCategories } = usePage().props;
@@ -19,7 +19,7 @@ export default function CreateVehicle() {
 
     return (
         <>
-            <AppLayout title="Create vehicle">
+            <AdminLayout title="Create vehicle">
                 {vehicleCategories && (
                     <form
                         onSubmit={handleSubmit}
@@ -99,7 +99,7 @@ export default function CreateVehicle() {
                         </div>
                     </form>
                 )}
-            </AppLayout>
+            </AdminLayout>
         </>
     );
 }
