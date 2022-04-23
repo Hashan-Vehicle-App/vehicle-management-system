@@ -6536,6 +6536,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-datepicker/dist/react-datepicker.css */ "./node_modules/react-datepicker/dist/react-datepicker.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6552,8 +6564,7 @@ function RequestVehicle(_ref) {
     vehicle: "",
     pickupLocation: "",
     deliverLocation: "",
-    pickupDate: "",
-    deliverDate: ""
+    pickupDate: ""
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -6561,9 +6572,69 @@ function RequestVehicle(_ref) {
       processing = _useForm.processing,
       errors = _useForm.errors;
 
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState2 = _slicedToArray(_useState, 2),
+      vehicleError = _useState2[0],
+      setVehicleError = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState4 = _slicedToArray(_useState3, 2),
+      pickupLocationError = _useState4[0],
+      setPickupLocationError = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState6 = _slicedToArray(_useState5, 2),
+      deliverLocationError = _useState6[0],
+      setDeliverLocationError = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
+      _useState8 = _slicedToArray(_useState7, 2),
+      pickupDateError = _useState8[0],
+      setPickupDateError = _useState8[1];
+
   function handleSubmit(e) {
     e.preventDefault();
-    post(route("vehicle.store"));
+
+    if (validateForm()) {
+      post(route("vehicle.store"));
+    }
+  }
+
+  function validateForm() {
+    var vehicle = data.vehicle,
+        pickupLocation = data.pickupLocation,
+        deliverLocation = data.deliverLocation,
+        pickupDate = data.pickupDate;
+    resetErrors();
+
+    if (vehicle == "") {
+      setVehicleError("Required field");
+      return false;
+    }
+
+    if (pickupLocation == "") {
+      setPickupLocationError("Required field");
+      return false;
+    }
+
+    if (deliverLocation == "") {
+      setDeliverLocationError("Required field");
+      return false;
+    }
+
+    if (pickupDate == "" || pickupDate === null) {
+      setPickupDateError("Required field");
+      return false;
+    }
+
+    return true;
+  }
+
+  function resetErrors() {
+    setVehicleError("");
+    setPickupLocationError("");
+    setDeliverLocationError("");
+    setPickupDateError("");
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
@@ -6599,9 +6670,9 @@ function RequestVehicle(_ref) {
               children: vehicle.category.title
             }, "vehicle-".concat(i + 1));
           })]
-        }), errors.vehicleCategoryName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        }), vehicleError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           className: "alert alert-danger",
-          children: errors.vehicleCategoryName
+          children: vehicleError
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "form-group mb-3",
@@ -6626,6 +6697,9 @@ function RequestVehicle(_ref) {
               children: location.location_name
             }, "location-".concat(i + 1));
           })]
+        }), pickupLocationError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "alert alert-danger",
+          children: pickupLocationError
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "form-group mb-3",
@@ -6650,6 +6724,9 @@ function RequestVehicle(_ref) {
               children: location.location_name
             }, "location-".concat(i + 1));
           })]
+        }), deliverLocationError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "alert alert-danger",
+          children: deliverLocationError
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         className: "form-group mb-3",
@@ -6664,22 +6741,11 @@ function RequestVehicle(_ref) {
           onChange: function onChange(date) {
             return setData("pickupDate", date);
           },
+          minDate: new Date(),
           className: "form-control"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "form-group mb-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-          htmlFor: "deliverDate",
-          children: "Deliver Date"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)((react_datepicker__WEBPACK_IMPORTED_MODULE_4___default()), {
-          id: "deliverDate",
-          name: "deliverDate",
-          dateFormat: dateFormat,
-          selected: data.deliverDate,
-          onChange: function onChange(date) {
-            return setData("deliverDate", date);
-          },
-          className: "form-control"
+        }), pickupDateError && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "alert alert-danger",
+          children: pickupDateError
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "mt-4 d-flex justify-content-end",

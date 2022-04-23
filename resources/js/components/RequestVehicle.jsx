@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { useForm } from "@inertiajs/inertia-react";
 import DatePicker from "react-datepicker";
 
@@ -12,12 +12,54 @@ export default function RequestVehicle({ availableVehicles, locations }) {
         pickupLocation: "",
         deliverLocation: "",
         pickupDate: "",
-        deliverDate: "",
     });
+
+    const [vehicleError, setVehicleError] = useState("");
+    const [pickupLocationError, setPickupLocationError] = useState("");
+    const [deliverLocationError, setDeliverLocationError] = useState("");
+    const [pickupDateError, setPickupDateError] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
-        post(route("vehicle.store"));
+
+        if (validateForm()) {
+            post(route("vehicle.store"));
+        }
+    }
+
+    function validateForm() {
+        const { vehicle, pickupLocation, deliverLocation, pickupDate } = data;
+
+        resetErrors();
+
+        if (vehicle == "") {
+            setVehicleError("Required field");
+            return false;
+        }
+
+        if (pickupLocation == "") {
+            setPickupLocationError("Required field");
+            return false;
+        }
+
+        if (deliverLocation == "") {
+            setDeliverLocationError("Required field");
+            return false;
+        }
+
+        if (pickupDate == "" || pickupDate === null) {
+            setPickupDateError("Required field");
+            return false;
+        }
+
+        return true;
+    }
+
+    function resetErrors() {
+        setVehicleError("");
+        setPickupLocationError("");
+        setDeliverLocationError("");
+        setPickupDateError("");
     }
 
     return (
@@ -58,10 +100,8 @@ export default function RequestVehicle({ availableVehicles, locations }) {
                             ))}
                     </select>
 
-                    {errors.vehicleCategoryName && (
-                        <div className="alert alert-danger">
-                            {errors.vehicleCategoryName}
-                        </div>
+                    {vehicleError && (
+                        <div className="alert alert-danger">{vehicleError}</div>
                     )}
                 </div>
 
@@ -92,6 +132,12 @@ export default function RequestVehicle({ availableVehicles, locations }) {
                                 </option>
                             ))}
                     </select>
+
+                    {pickupLocationError && (
+                        <div className="alert alert-danger">
+                            {pickupLocationError}
+                        </div>
+                    )}
                 </div>
 
                 {/* Deliver location */}
@@ -121,6 +167,12 @@ export default function RequestVehicle({ availableVehicles, locations }) {
                                 </option>
                             ))}
                     </select>
+
+                    {deliverLocationError && (
+                        <div className="alert alert-danger">
+                            {deliverLocationError}
+                        </div>
+                    )}
                 </div>
 
                 {/* Pickup date */}
@@ -132,21 +184,15 @@ export default function RequestVehicle({ availableVehicles, locations }) {
                         dateFormat={dateFormat}
                         selected={data.pickupDate}
                         onChange={(date) => setData("pickupDate", date)}
+                        minDate={new Date()}
                         className="form-control"
                     />
-                </div>
 
-                {/* Deliver date */}
-                <div className="form-group mb-3">
-                    <label htmlFor="deliverDate">Deliver Date</label>
-                    <DatePicker
-                        id="deliverDate"
-                        name="deliverDate"
-                        dateFormat={dateFormat}
-                        selected={data.deliverDate}
-                        onChange={(date) => setData("deliverDate", date)}
-                        className="form-control"
-                    />
+                    {pickupDateError && (
+                        <div className="alert alert-danger">
+                            {pickupDateError}
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-4 d-flex justify-content-end">
