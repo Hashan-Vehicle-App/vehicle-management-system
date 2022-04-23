@@ -1,12 +1,10 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
 
+@import "reset/reset";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "./core/core";
 @import "./utils/utils";
 @import "./form.scss";
@@ -14,3 +12,7 @@
 
 @import "./layouts/app-layout.scss";
 @import "./layouts/auth-layout.scss";
+
+#app {
+    height: 100%;
+}

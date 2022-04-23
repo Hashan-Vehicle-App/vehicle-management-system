@@ -23,7 +23,7 @@
     @enderror
   </div>
 
-  <div class="form-group mb-8">
+  <div class="form-group mb-4">
     <label for="password">Password</label>
     <input id="password" name="password" type="password" value="{{ old('password') }}"
       class="form-control @error('password') is-invalid @enderror">
@@ -32,7 +32,7 @@
     @enderror
   </div>
 
-  <div class="flex justify-center">
+  <div class="d-flex justify-content-center">
     <button type="submit" role="button" class="btn btn-accent">Login</button>
   </div>
 </form>

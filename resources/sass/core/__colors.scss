@@ -1,0 +1,30 @@
+$primary: rgb(17 94 89);
+$accent: rgb(91 33 182);
+
+$grayLight: rgb(212 212 212);
+$gray: rgb(136, 141, 148);
+$grayDark: rgb(110, 117, 128);
+
+$font-base: 1rem;
+
+:root {
+    --gray-light: #dedede;
+    --gray-lighter: #e1e1e1;
+    --gray-dark: rgb(110, 117, 128);
+
+    // Font sizes
+    --font-base: 1rem;
+    --font-size-small: #{$font-base * 0.875};
+}
+
+.bg-primary {
+    background-color: $primary;
+}
+
+.bg-primary-dark {
+    background-color: #344965;
+}
+
+.bg-primary-lightest {
+    background-color: #e2ebf5;
+}

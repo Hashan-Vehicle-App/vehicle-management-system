@@ -1,0 +1,20 @@
+.auth-wrapper {
+    background-color: #344965;
+}
+
+.auth-page-title {
+    position: relative;
+    margin-bottom: calc(0.5rem + 15px);
+}
+
+.auth-page-title::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--gray-lighter);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
