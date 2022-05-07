@@ -5,7 +5,7 @@ import "./MainMenuItem.scss";
 
 export default function MainMenuItem({ link, text }) {
     return (
-        <div className="mb-4">
+        <div>
             <Link href={route(link)} className="main-menu-item">
                 <div>{text}</div>
             </Link>

@@ -1,3 +1,10 @@
 .btn-accent {
     color: #ffffff;
 }
+
+.btn-primary {
+    &,
+    &:hover {
+        color: #ffffff;
+    }
+}

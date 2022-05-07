@@ -11,7 +11,7 @@ class VehicleCategory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title'
+        'title', 'slug'
     ];
 
     public function vehicles()

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Models\VehicleCategory;
 use App\Models\Vehicle;
+use App\Models\VehicleRequest;
+use Carbon\Carbon;
 use Inertia\Inertia;
 
 class VehicleController extends Controller
@@ -87,6 +89,24 @@ class VehicleController extends Controller
         if ($result) {
             return Redirect::route('vehicle.index')->with('success', 'Vehicle successfully updated.');
         }
+    }
+
+    public function getAvailableVehiclesToday()
+    {
+        $todayRequests = VehicleRequest::where('pickup_date', Carbon::today()->toDateString())->with('vehicle')->get()->toArray();
+
+        $todayRequestedVehicleIds = array_map(fn ($request) => $request['vehicle_id'], $todayRequests);
+
+        return Vehicle::whereNotIn('id', $todayRequestedVehicleIds)->with('category')->get();
+    }
+
+    public function getAvailableVehiclesByDate(Request $request)
+    {
+        $todayRequests = VehicleRequest::where('pickup_date', (new Carbon($request->query('date')))->toDateString())->with('vehicle')->get()->toArray();
+
+        $todayRequestedVehicleIds = array_map(fn ($request) => $request['vehicle_id'], $todayRequests);
+
+        return Vehicle::whereNotIn('id', $todayRequestedVehicleIds)->with('category')->get();
     }
 
     public function destroy($id)

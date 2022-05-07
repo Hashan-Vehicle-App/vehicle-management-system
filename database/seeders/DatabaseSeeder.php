@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\VehicleCategorySeeder;
+use Database\Seeders\LocationSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(UserSeeder::class);
+        $this->call(VehicleSeeder::class);
+        $this->call(LocationSeeder::class);
+        $this->call(VehicleRequestSeeder::class);
     }
 }
