@@ -5,10 +5,10 @@ import { React } from "react";
 import ClientLayout from "../Layouts/ClientLayout";
 
 // components
-import RequestVehicle from "../components/RequestVehicle";
+import { ClientVehicleRequests } from "../components/ClientVehicleRequests";
 
 export default function ClientDashboard() {
-    const { availableVehiclesToday, locations } = usePage().props;
+    const { vehicleRequests } = usePage().props;
 
     return (
         <>
@@ -20,9 +20,8 @@ export default function ClientDashboard() {
                         </div>
                     </div>
                     <div className="page-section-content">
-                        <RequestVehicle
-                            availableVehicles={availableVehiclesToday}
-                            locations={locations}
+                        <ClientVehicleRequests
+                            vehicleRequests={vehicleRequests}
                         />
                     </div>
                 </div>

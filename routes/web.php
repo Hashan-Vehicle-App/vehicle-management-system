@@ -36,11 +36,11 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'show'])->name('admin.dashboard');
 
     // Admin setting routes
-    Route::get('admin/settings/vehicles', [VehicleController::class, 'index'])->name('vehicle.index');
+    Route::get('admin/settings/vehicles', [AdminController::class, 'showVehicles'])->name('admin.vehicles.show');
     Route::get('admin/settings/vehicles/create', [VehicleController::class, 'create'])->name('vehicle.create');
     Route::get('admin/settings/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('vehicle.edit');
 
-    Route::get('vehicle-categories', [VehicleCategoryController::class, 'index'])->name('vehicleCategory.index');
+    Route::get('admin/settings/vehicle-categories', [AdminController::class, 'showVehicleCategories'])->name('admin.vehicleCategories.show');
     Route::get('admin/settings/vehicle-categories/create', [VehicleCategoryController::class, 'create'])->name('vehicleCategory.create');
     Route::get('admin/settings/vehicle-categories/{id}/edit', [VehicleCategoryController::class, 'edit'])->name('vehicleCategory.edit');
 

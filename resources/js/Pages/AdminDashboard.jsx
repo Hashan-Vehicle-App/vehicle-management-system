@@ -5,10 +5,11 @@ import { React } from "react";
 import AdminLayout from "../Layouts/AdminLayout";
 
 // components
+import { AdminVehicleRequests } from "../components/AdminVehicleRequests";
 
 export default function AdminDashboard() {
     const { vehicleRequests } = usePage().props;
-    console.log("vehicle requests: ", vehicleRequests);
+
     return (
         <>
             <AdminLayout title="Dashboard">
@@ -19,58 +20,9 @@ export default function AdminDashboard() {
                         </div>
                     </div>
                     <div className="page-section-content">
-                        {vehicleRequests.length ? (
-                            <>
-                                <table className="table">
-                                    <tbody>
-                                        <tr className="table-light">
-                                            <th>Vehicle Type</th>
-                                            <th>Vehicle</th>
-                                            <th>Pickup Location</th>
-                                            <th>Deliver Location</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                        </tr>
-
-                                        {vehicleRequests.map((request, i) => (
-                                            <tr key={`request-row-${i}`}>
-                                                <td>
-                                                    {
-                                                        request.vehicle.category
-                                                            .title
-                                                    }
-                                                </td>
-                                                <td>
-                                                    {request.vehicle.vehicle_no}
-                                                </td>
-                                                <td>
-                                                    {
-                                                        request.pickup_location
-                                                            .name
-                                                    }
-                                                </td>
-                                                <td>
-                                                    {
-                                                        request.deliver_location
-                                                            .name
-                                                    }
-                                                </td>
-                                                <td>{request.pickup_date}</td>
-                                                <td>
-                                                    <span
-                                                        className={`badge status-${request.status}`}
-                                                    >
-                                                        {request.status}
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </>
-                        ) : (
-                            <p>No vehicle requests.</p>
-                        )}
+                        <AdminVehicleRequests
+                            vehicleRequests={vehicleRequests}
+                        />
                     </div>
                 </div>
             </AdminLayout>

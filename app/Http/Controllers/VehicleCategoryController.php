@@ -16,9 +16,7 @@ class VehicleCategoryController extends Controller
 
     public function index()
     {
-        $vehicleCategories = VehicleCategory::all();
-        return $vehicleCategories;
-        return Inertia::render('VehicleCategories/Index', ['vehicleCategories' => $vehicleCategories]);
+        return VehicleCategory::all();
     }
 
     public function create()

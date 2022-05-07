@@ -31,6 +31,7 @@ class DashboardController extends Controller
             $props['userRole'] = $user->user_role;
             $props['availableVehiclesToday'] = $availableVehiclesToday;
             $props['locations'] = $locations;
+            $props['vehicleRequests'] = $vehicleRequests;
 
             return Inertia::render('ClientDashboard', $props);
         }

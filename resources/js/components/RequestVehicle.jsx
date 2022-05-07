@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { useForm } from "@inertiajs/inertia-react";
 import DatePicker from "react-datepicker";
 import { Inertia } from "@inertiajs/inertia";
@@ -305,6 +305,12 @@ export default function RequestVehicle({ locations }) {
                                             )
                                         )}
                                 </ul>
+
+                                {errors.vehicle && (
+                                    <div className="alert alert-danger">
+                                        {errors.vehicle}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -315,7 +321,7 @@ export default function RequestVehicle({ locations }) {
                         <button
                             type="submit"
                             role="button"
-                            disabled={processing}
+                            disabled={processing || wasSuccessful}
                             className="btn btn-primary"
                         >
                             Make Request

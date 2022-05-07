@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
-use App\Models\Vehicle;
-use App\Models\VehicleCategory;
 use App\Models\Location;
 
 use Inertia\Inertia;
@@ -57,6 +55,19 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::route('admin.login');
+    }
+
+    public function showVehicleCategories()
+    {
+        $vehicleCategories = (new VehicleCategoryController)->index();
+        return Inertia::render('admin/PageVehicleCategories', ['vehicleCategories' => $vehicleCategories]);
+    }
+
+    public function showVehicles()
+    {
+        $vehicles = (new VehicleController)->index();
+        $vehicleCategories = (new VehicleCategoryController)->index();
+        return Inertia::render('admin/PageVehicles', ['vehicles' => $vehicles, 'vehicleCategories' => $vehicleCategories]);
     }
 
     /* Manage vehicle categories */

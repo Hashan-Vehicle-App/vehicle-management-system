@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\VehicleRequest;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
-use Inertia\Inertia;
 
 class VehicleRequestController extends Controller
 {
+
+    public function index()
+    {
+        $vehicleRequests = VehicleRequest::with('vehicle.category', 'pickupLocation', 'deliverLocation')->get();
+        return response()->json($vehicleRequests);
+    }
+
     public function store(Request $request)
     {
 

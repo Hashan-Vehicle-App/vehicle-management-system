@@ -1,21 +1,21 @@
 import { React } from "react";
-import { Link } from "@inertiajs/inertia-react";
+import { Link, usePage } from "@inertiajs/inertia-react";
 
 // style
 import "./AppLayout.scss";
 
 // components
-import MainMenuItem from "../Shared/MainMenuItem";
-import { getThemeProps } from "@mui/system";
 import { AppRightColumn } from "./components/AppRightColumn";
 import { AppLeftColumn } from "./components/AppLeftColumn";
 
 export default function AdminLayout({ children, title }) {
+    const { url } = usePage();
+
     return (
         <>
             <div className="app-layout">
                 <AppLeftColumn>
-                    <AdminMenuItems />
+                    <AdminMenuItems url={url} />
                 </AppLeftColumn>
 
                 <AppRightColumn title={title}>{children}</AppRightColumn>
@@ -24,29 +24,43 @@ export default function AdminLayout({ children, title }) {
     );
 }
 
-function AdminMenuItems() {
+function AdminMenuItems(props) {
     return (
         <>
             <div className="left-menu list-group list-group-flush">
-                <a
+                <Link
                     href={route("admin.dashboard")}
-                    className="list-group-item list-group-item-action active"
+                    className={`list-group-item list-group-item-action ${
+                        props.url === "/admin/dashboard" ? "active" : ""
+                    }`}
                 >
                     Dashboard
-                </a>
+                </Link>
 
-                <a href={route("vehicle.index")} className="list-group-item">
+                <Link
+                    href={route("admin.vehicles.show")}
+                    className={`list-group-item ${
+                        props.url === "/admin/settings/vehicles" ? "active" : ""
+                    }`}
+                >
                     Vehicles
-                </a>
-                <a
-                    href={route("vehicleCategory.index")}
-                    className="list-group-item"
+                </Link>
+                <Link
+                    href={route("admin.vehicleCategories.show")}
+                    className={`list-group-item ${
+                        props.url === "/admin/settings/vehicle-categories"
+                            ? "active"
+                            : ""
+                    }`}
                 >
                     Vehicle Categories
-                </a>
-                <a href={route("location.index")} className="list-group-item">
+                </Link>
+                <Link
+                    href={route("location.index")}
+                    className="list-group-item"
+                >
                     Locations
-                </a>
+                </Link>
             </div>
         </>
     );

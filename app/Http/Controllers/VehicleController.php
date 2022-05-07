@@ -17,10 +17,7 @@ class VehicleController extends Controller
 
     public function index()
     {
-
-        $vehicles = Vehicle::with('category')->get();
-
-        return Inertia::render('Vehicles/Index', ['vehicles' => $vehicles]);
+        return Vehicle::with('category')->get();
     }
 
     public function create()
@@ -53,7 +50,7 @@ class VehicleController extends Controller
 
         if ($result) {
             //return Redirect::back()->with('success', 'Vehicle successfully created.');
-            return Redirect::route('vehicle.index')->with('success', 'Vehicle created successfully');
+            return Redirect::back()->with('success', 'Vehicle created successfully');
         }
     }
 
@@ -87,7 +84,7 @@ class VehicleController extends Controller
         $result = $vehicle->save();
 
         if ($result) {
-            return Redirect::route('vehicle.index')->with('success', 'Vehicle successfully updated.');
+            return Redirect::back()->with('success', 'Vehicle successfully updated.');
         }
     }
 
