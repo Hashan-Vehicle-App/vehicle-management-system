@@ -16,7 +16,7 @@ export default function ClientDashboard() {
                 <div className="page-section">
                     <div className="page-section-header">
                         <div>
-                            <h5>Request Vehicle</h5>
+                            <h5>Vehicle Requests</h5>
                         </div>
                     </div>
                     <div className="page-section-content">
@@ -26,28 +26,6 @@ export default function ClientDashboard() {
                     </div>
                 </div>
             </ClientLayout>
-        </>
-    );
-}
-
-function AvailableVehiclesToday({ availableVehiclesToday }) {
-    return (
-        <>
-            <table className="table">
-                <tbody>
-                    <tr className="table-light">
-                        <th>Registration</th>
-                        <th>Type</th>
-                    </tr>
-
-                    {availableVehiclesToday.map((vehicle, index) => (
-                        <tr key={`available-vehicle-row-${index}`}>
-                            <td>{vehicle.vehicle_no}</td>
-                            <td>{vehicle.category.title}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
         </>
     );
 }

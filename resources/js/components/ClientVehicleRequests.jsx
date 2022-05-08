@@ -13,6 +13,7 @@ export function ClientVehicleRequests({ vehicleRequests }) {
                                 <th>Pickup Location</th>
                                 <th>Deliver Location</th>
                                 <th>Date</th>
+                                <th>Cost</th>
                                 <th>Status</th>
                             </tr>
 
@@ -23,6 +24,7 @@ export function ClientVehicleRequests({ vehicleRequests }) {
                                     <td>{request.pickup_location.name}</td>
                                     <td>{request.deliver_location.name}</td>
                                     <td>{request.pickup_date}</td>
+                                    <td>Rs. {request.cost}</td>
                                     <td>
                                         <span
                                             className={`badge status-${request.status}`}

@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React } from "react";
 import { usePage } from "@inertiajs/inertia-react";
 
 // Layouts

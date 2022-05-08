@@ -26,7 +26,6 @@ class VehicleSeeder extends Seeder
                 Vehicle::factory()->create([
                     'vehicle_no' => $faker->regexify('[A-Z]{2}-[0-9]{4}'),
                     'category_id' => $category['id'],
-                    'status' => 'available'
                 ]);
             }
         }

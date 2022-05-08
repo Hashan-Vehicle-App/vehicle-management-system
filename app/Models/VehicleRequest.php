@@ -10,7 +10,7 @@ class VehicleRequest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'vehicle_id', 'pickup_location_id', 'deliver_location_id', 'pickup_date', 'status'
+        'vehicle_id', 'pickup_location_id', 'deliver_location_id', 'pickup_date', 'cost', 'status'
     ];
 
     public function vehicle()

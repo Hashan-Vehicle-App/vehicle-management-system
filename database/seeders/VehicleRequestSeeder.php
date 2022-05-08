@@ -15,39 +15,76 @@ class VehicleRequestSeeder extends Seeder
      */
     public function run()
     {
-        VehicleRequest::factory()->create([
-            'vehicle_id' => 1,
-            'pickup_location_id' => 1,
-            'deliver_location_id' => 2,
-            'pickup_date' => Carbon::today()->toDateString()
-        ]);
 
-        VehicleRequest::factory()->create([
-            'vehicle_id' => 4,
-            'pickup_location_id' => 2,
-            'deliver_location_id' => 3,
-            'pickup_date' => Carbon::today()->toDateString()
-        ]);
+        // Today requests
+        for ($i = 1; $i <= 2; $i++) {
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i + 2,
+                'pickup_location_id' => $i,
+                'deliver_location_id' => $i + 1,
+                'pickup_date' => Carbon::today()->toDateString(),
+                'cost' => 1000 + 250 * $i
+            ]);
+        }
 
-        VehicleRequest::factory()->create([
-            'vehicle_id' => 7,
-            'pickup_location_id' => 3,
-            'deliver_location_id' => 4,
-            'pickup_date' => Carbon::today()->toDateString(), 'status' => 'approved'
-        ]);
+        // Tomorrow requests
+        for ($i = 1; $i <= 2; $i++) {
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i * 2 + 2,
+                'pickup_location_id' => $i + 1,
+                'deliver_location_id' => $i + 2,
+                'pickup_date' => Carbon::tomorrow()->toDateString(),
+                'cost' => 1500 + 250 * $i
+            ]);
+        }
 
-        VehicleRequest::factory()->create([
-            'vehicle_id' => 12,
-            'pickup_location_id' => 5,
-            'deliver_location_id' => 6,
-            'pickup_date' => Carbon::today()->toDateString(), 'status' => 'declined'
-        ]);
+        // Yesterday requests
+        for ($i = 1; $i <= 2; $i++) {
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i,
+                'pickup_location_id' => $i + 2,
+                'deliver_location_id' => $i + 3,
+                'pickup_date' => Carbon::yesterday()->toDateString(),
+                'cost' => 1500 + 250 * $i
+            ]);
+        }
 
-        VehicleRequest::factory()->create([
-            'vehicle_id' => 1,
-            'pickup_location_id' => 4,
-            'deliver_location_id' => 2,
-            'pickup_date' => Carbon::today()->toDateString()
-        ]);
+        // Month before requests
+        for ($i = 1; $i <= 2; $i++) {
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i + 3,
+                'pickup_location_id' => $i + 3,
+                'deliver_location_id' => $i + 4,
+                'pickup_date' => Carbon::today()->subMonth(1)->toDateString(),
+                'cost' => 750 + 200 * $i
+            ]);
+
+            // Month before + i day
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i + 7,
+                'pickup_location_id' => $i + 3,
+                'deliver_location_id' => $i + 4,
+                'pickup_date' => Carbon::today()->subMonth(1)->addDays($i)->toDateString(),
+                'cost' => 750 + 200 * $i
+            ]);
+
+            // Month before + (i * 2) day
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i + 4,
+                'pickup_location_id' => $i + 3,
+                'deliver_location_id' => $i + 4,
+                'pickup_date' => Carbon::today()->subMonth(1)->addDays($i * 2)->toDateString(),
+                'cost' => 750 + 200 * $i
+            ]);
+
+            // Month before - (i * 2) day
+            VehicleRequest::factory()->create([
+                'vehicle_id' => $i + 5,
+                'pickup_location_id' => $i + 3,
+                'deliver_location_id' => $i + 4,
+                'pickup_date' => Carbon::today()->subMonth(1)->subDays($i * 2)->toDateString(),
+                'cost' => 750 + 200 * $i
+            ]);
+        }
     }
 }

@@ -18,7 +18,6 @@ export default function Vehicles({ vehicles }) {
                             <tr className="table-light">
                                 <th className="text-left">Vehicle No</th>
                                 <th className="text-left">Category</th>
-                                <th className="text-left">Status</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -27,11 +26,6 @@ export default function Vehicles({ vehicles }) {
                                 <tr className="border-b" key={`vehicle-${i}`}>
                                     <td>{vehicle.vehicle_no}</td>
                                     <td>{vehicle.category.title}</td>
-                                    <td>
-                                        <div className="badge bg-primary">
-                                            {vehicle.status}
-                                        </div>
-                                    </td>
                                     <td className="text-center">
                                         {/* Edit vehicle link */}
                                         <Link

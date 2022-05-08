@@ -78,3 +78,7 @@ Route::middleware('auth.client')->group(function () {
     Route::post('/client/request-vehicle', [VehicleRequestController::class, 'store'])->name('vehicleRequest.store');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
+
+Route::group(['middleware' => ['auth.admin', 'auth.client']], function () {
+    Route::put('vehicle-request/{id}', [VehicleRequestController::class, 'update'])->name('vehicleRequest.update');
+});

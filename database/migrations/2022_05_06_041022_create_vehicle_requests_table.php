@@ -19,6 +19,7 @@ class CreateVehicleRequestsTable extends Migration
             $table->foreignId('pickup_location_id')->reference('id')->on('locations');
             $table->foreignId('deliver_location_id')->reference('id')->on('locations');
             $table->string('pickup_date');
+            $table->float('cost');
             $table->enum('status', array('pending', 'approved', 'declined'))->default('pending');
             $table->timestamps();
         });

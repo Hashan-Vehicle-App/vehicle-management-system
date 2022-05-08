@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
         $availableVehicles = Vehicle::where('status', 'available')->with('category')->get();
         $locations = Location::all();
-        $vehicleRequests = VehicleRequest::with('vehicle.category', 'pickupLocation', 'deliverLocation')->get();
+        $vehicleRequests = (new VehicleRequestController)->index();
 
         $props = array();
 

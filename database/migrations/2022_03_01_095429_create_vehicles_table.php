@@ -17,7 +17,6 @@ class CreateVehiclesTable extends Migration
             $table->id();
             $table->string('vehicle_no', 10);
             $table->foreignId('category_id')->reference('id')->on('vehicle_categories');
-            $table->string('status', 20)->default('available');
             $table->timestamps();
         });
     }

@@ -12,8 +12,8 @@ class VehicleRequestController extends Controller
 
     public function index()
     {
-        $vehicleRequests = VehicleRequest::with('vehicle.category', 'pickupLocation', 'deliverLocation')->get();
-        return response()->json($vehicleRequests);
+        $vehicleRequests = VehicleRequest::with('vehicle.category', 'pickupLocation', 'deliverLocation')->orderBy('status')->orderBy('pickup_date', 'desc')->get();
+        return $vehicleRequests;
     }
 
     public function store(Request $request)
@@ -43,6 +43,26 @@ class VehicleRequestController extends Controller
         if ($result) {
             //return Redirect::back()->with('success', 'Vehicle successfully created.');
             return Redirect::back()->with('success', 'Vehicle request submitted.');
+        }
+    }
+
+    public function update($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'status' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $vehicleRequest = VehicleRequest::find($id);
+        $vehicleRequest->status = $request->status;
+
+        $result = $vehicleRequest->save();
+
+        if ($result) {
+            return Redirect::back()->with('success', 'Vehicle request updated.');
         }
     }
 }
