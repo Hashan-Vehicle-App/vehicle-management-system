@@ -14,7 +14,7 @@ export function AppRightColumn({ children, title }) {
                                 as="button"
                                 href={route("logout")}
                                 method="post"
-                                className="btn btn-default"
+                                className="btn btn-primary"
                             >
                                 Logout
                             </Link>

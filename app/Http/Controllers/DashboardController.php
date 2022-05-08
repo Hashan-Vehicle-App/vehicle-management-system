@@ -15,7 +15,6 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        $availableVehicles = Vehicle::where('status', 'available')->with('category')->get();
         $locations = Location::all();
         $vehicleRequests = (new VehicleRequestController)->index();
 

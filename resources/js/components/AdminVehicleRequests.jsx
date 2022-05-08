@@ -3,7 +3,6 @@ import { Inertia } from "@inertiajs/inertia";
 
 export function AdminVehicleRequests({ vehicleRequests }) {
     function handleStatusChangeClick(action, requestId) {
-        console.log("request id: ", requestId);
         Inertia.put(
             route("vehicleRequest.update", requestId),
             { status: action },

@@ -63,7 +63,7 @@ export default function AdminLoginPage() {
                 <button
                     type="submit"
                     role="button"
-                    className="btn btn-accent w-100"
+                    className="btn btn-primary w-100"
                     disabled={processing}
                 >
                     Login

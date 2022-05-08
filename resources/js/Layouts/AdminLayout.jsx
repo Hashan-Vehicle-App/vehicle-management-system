@@ -38,6 +38,13 @@ function AdminMenuItems(props) {
                 </Link>
 
                 <Link
+                    href={route("admin.reports.show")}
+                    className="list-group-item"
+                >
+                    Reports
+                </Link>
+
+                <Link
                     href={route("admin.vehicles.show")}
                     className={`list-group-item ${
                         props.url === "/admin/settings/vehicles" ? "active" : ""

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicle;
 use App\Models\VehicleRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +15,11 @@ class VehicleRequestController extends Controller
     {
         $vehicleRequests = VehicleRequest::with('vehicle.category', 'pickupLocation', 'deliverLocation')->orderBy('status')->orderBy('pickup_date', 'desc')->get();
         return $vehicleRequests;
+    }
+
+    public function listByStatus($status)
+    {
+        return VehicleRequest::with('vehicle.category', 'pickupLocation', 'deliverLocation')->where('status', $status)->orderBy('pickup_date')->get();
     }
 
     public function store(Request $request)

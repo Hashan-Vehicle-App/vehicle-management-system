@@ -41,14 +41,11 @@ export default function RequestVehicle({ locations }) {
         console.log(data);
 
         post(route("vehicleRequest.store"), {
-            preserveState: true,
-            preserveScroll: true,
-            replace: false,
             onSubmit: (page) => console.log("submit page: ", page),
             onSuccess: (page) => {
                 setTimeout(() => {
                     Inertia.get(route("client.dashboard"));
-                }, 2000);
+                }, 1000);
             },
         });
     }

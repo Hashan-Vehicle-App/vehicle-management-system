@@ -75,4 +75,10 @@ class AdminController extends Controller
         $locations = (new LocationController)->index();
         return Inertia::render('admin/PageLocations', ['locations' => $locations]);
     }
+
+    public function showReports()
+    {
+        $vehicleRequests = (new VehicleRequestController)->listByStatus('approved');
+        return Inertia::render('admin/PageReports', ['vehicleRequests' => $vehicleRequests]);
+    }
 }

@@ -49,6 +49,8 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
     Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
 
+    Route::get('/admin/settnigs/reports', [AdminController::class, 'showReports'])->name('admin.reports.show');
+
     // Vehicle routes
     Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicle.store');
     Route::put('/vehicles/{id}', [VehicleController::class, 'update'])->name('vehicle.update');
@@ -56,6 +58,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/vehicles/available-by-date', [VehicleController::class, 'getAvailableVehiclesByDate'])->name('get-available-vehicles-by-date');
 
     // Vehicle category routes
+    Route::get('/vehicle-categories', [VehicleCategoryController::class, 'index'])->name('vehicleCategory.index');
     Route::post('/vehicle-categories', [VehicleCategoryController::class, 'store'])->name('vehicleCategory.store');
     Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'update'])->name('vehicleCategory.update');
     Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'destroy'])->name('vehicleCategory.destroy');
