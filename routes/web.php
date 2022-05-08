@@ -44,6 +44,8 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('admin/settings/vehicle-categories/create', [VehicleCategoryController::class, 'create'])->name('vehicleCategory.create');
     Route::get('admin/settings/vehicle-categories/{id}/edit', [VehicleCategoryController::class, 'edit'])->name('vehicleCategory.edit');
 
+    Route::get('admin/settings/locations', [AdminController::class, 'showLocations'])->name('admin.locations.show');
+
     Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
     Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
 
@@ -59,7 +61,6 @@ Route::middleware('auth.admin')->group(function () {
     Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'destroy'])->name('vehicleCategory.destroy');
 
     // Location routes
-    Route::get('admin/settings/locations', [LocationController::class, 'index'])->name('location.index');
     Route::get('/locations/create', [LocationController::class, 'create'])->name('location.create');
     Route::post('/locations', [LocationController::class, 'store'])->name('location.store');
 

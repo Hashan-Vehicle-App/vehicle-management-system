@@ -43,7 +43,7 @@ class VehicleCategoryController extends Controller
         $result = $newVehicleCategory->save();
 
         if ($result) {
-            return Redirect::route('vehicleCategory.index');
+            return Redirect::back()->with('success', 'Vehicle category created successfully.');
         }
     }
 

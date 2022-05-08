@@ -15,9 +15,7 @@ class LocationController extends Controller
     public function index()
     {
 
-        $locations = Location::all();
-
-        return Inertia::render('Locations/Index', ['locations' => $locations]);
+        return Location::all();
     }
 
     public function create()
@@ -44,7 +42,7 @@ class LocationController extends Controller
         $result = $newLocation->save();
 
         if ($result) {
-            return Redirect::route('location.index')->with('success', 'Location created successfully.');
+            return Redirect::back()->with('success', 'Location created successfully.');
         }
     }
 

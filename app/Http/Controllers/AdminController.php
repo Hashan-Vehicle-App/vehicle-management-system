@@ -70,12 +70,9 @@ class AdminController extends Controller
         return Inertia::render('admin/PageVehicles', ['vehicles' => $vehicles, 'vehicleCategories' => $vehicleCategories]);
     }
 
-    /* Manage vehicle categories */
-    public function showManageLocations()
+    public function showLocations()
     {
-
-        $locations = Location::all();
-
-        return view('admin.settings.manageLocations', ['locations' => $locations]);
+        $locations = (new LocationController)->index();
+        return Inertia::render('admin/PageLocations', ['locations' => $locations]);
     }
 }

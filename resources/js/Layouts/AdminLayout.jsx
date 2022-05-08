@@ -56,7 +56,7 @@ function AdminMenuItems(props) {
                     Vehicle Categories
                 </Link>
                 <Link
-                    href={route("location.index")}
+                    href={route("admin.locations.show")}
                     className="list-group-item"
                 >
                     Locations

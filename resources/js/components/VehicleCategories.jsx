@@ -1,9 +1,7 @@
 import { React } from "react";
 import { usePage, Link } from "@inertiajs/inertia-react";
 
-export default function VehicleCategories() {
-    const { vehicleCategories } = usePage().props;
-
+export default function VehicleCategories({ vehicleCategories }) {
     return (
         <>
             {vehicleCategories.length > 0 ? (
