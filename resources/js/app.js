@@ -1,4 +1,6 @@
-//require('./bootstrap');
+require("./bootstrap");
+
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import React from "react";
 import { createRoot } from "react-dom/client";

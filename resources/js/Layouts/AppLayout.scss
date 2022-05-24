@@ -8,7 +8,7 @@
     width: 360px;
 
     .inner-container {
-        background-color: #336bb4;
+        background-color: #01579b;
         height: 100%;
     }
 }
@@ -51,25 +51,29 @@
         padding: 0.75rem 1rem 0.75rem 2rem;
         border-bottom: 1px solid rgba($color: #ffffff, $alpha: 0.15);
     }
-
-    &-nav {
-        padding: 2rem;
-
-        a {
-            display: block;
-            padding: 0.5rem 0;
-            color: rgba($color: #ffffff, $alpha: 0.5);
-            position: relative;
-            text-decoration: none;
-
-            &.active,
-            &:hover {
-                color: #ffffff;
-            }
-        }
-    }
 }
 
 .page-content {
     padding: 2rem;
+}
+
+.left-menu.list-group {
+    margin-top: 20px;
+    border-radius: 0;
+}
+
+.app-nav {
+    .list-group-item {
+        background-color: transparent;
+        color: rgba($color: #fff, $alpha: 0.75);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        &:hover,
+        &.active {
+            background-color: rgba($color: #fff, $alpha: 0.15);
+            border-color: rgba($color: #fff, $alpha: 0.15);
+            color: #fff;
+        }
+    }
 }

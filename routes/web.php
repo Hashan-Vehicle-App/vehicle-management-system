@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleCategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VehicleRequestController;
 use Inertia\Inertia;
 
 /*
@@ -35,31 +36,36 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/admin/dashboard', [DashboardController::class, 'show'])->name('admin.dashboard');
 
     // Admin setting routes
-    Route::get('admin/settings/vehicles', [VehicleController::class, 'index'])->name('vehicle.index');
+    Route::get('admin/settings/vehicles', [AdminController::class, 'showVehicles'])->name('admin.vehicles.show');
     Route::get('admin/settings/vehicles/create', [VehicleController::class, 'create'])->name('vehicle.create');
     Route::get('admin/settings/vehicles/{id}/edit', [VehicleController::class, 'edit'])->name('vehicle.edit');
 
-    Route::get('admin/settings/vehicle-categories', [VehicleCategoryController::class, 'index'])->name('vehicleCategory.index');
+    Route::get('admin/settings/vehicle-categories', [AdminController::class, 'showVehicleCategories'])->name('admin.vehicleCategories.show');
     Route::get('admin/settings/vehicle-categories/create', [VehicleCategoryController::class, 'create'])->name('vehicleCategory.create');
     Route::get('admin/settings/vehicle-categories/{id}/edit', [VehicleCategoryController::class, 'edit'])->name('vehicleCategory.edit');
+
+    Route::get('admin/settings/locations', [AdminController::class, 'showLocations'])->name('admin.locations.show');
 
     Route::get('admin/settings/edit-vehicle/{id}', [AdminController::class, 'showEditVehicle'])->name('showEditVehicle');
     Route::get('admin/settings/edit-vehicle-category/{id}', [AdminController::class, 'showEditVehicleCategory'])->name('showEditVehicleCategory');
 
-    Route::get('admin/settings/locations', [LocationController::class, 'index'])->name('location.index');
+    Route::get('/admin/settnigs/reports', [AdminController::class, 'showReports'])->name('admin.reports.show');
 
     // Vehicle routes
     Route::post('/vehicles', [VehicleController::class, 'store'])->name('vehicle.store');
     Route::put('/vehicles/{id}', [VehicleController::class, 'update'])->name('vehicle.update');
     Route::delete('/vehicles/{id}', [VehicleController::class, 'destroy'])->name('vehicle.destroy');
+    Route::get('/vehicles/available-by-date', [VehicleController::class, 'getAvailableVehiclesByDate'])->name('get-available-vehicles-by-date');
 
     // Vehicle category routes
+    Route::get('/vehicle-categories', [VehicleCategoryController::class, 'index'])->name('vehicleCategory.index');
     Route::post('/vehicle-categories', [VehicleCategoryController::class, 'store'])->name('vehicleCategory.store');
     Route::put('/vehicle-categories/{id}', [VehicleCategoryController::class, 'update'])->name('vehicleCategory.update');
     Route::delete('/vehicle-categories/{id}', [VehicleCategoryController::class, 'destroy'])->name('vehicleCategory.destroy');
 
     // Location routes
-    Route::post('/locations', [LocationController::class, 'createLocation'])->name('createLocation');
+    Route::get('/locations/create', [LocationController::class, 'create'])->name('location.create');
+    Route::post('/locations', [LocationController::class, 'store'])->name('location.store');
 
     // Other
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
@@ -71,5 +77,11 @@ Route::post('/client/login', [ClientController::class, 'login'])->name('client.l
 
 Route::middleware('auth.client')->group(function () {
     Route::get('/client/dashboard', [DashboardController::class, 'show'])->name('client.dashboard');
+    Route::get('/client/request-vehicle', [ClientController::class, 'showVehicleRequest'])->name('client.vehicleRequest.show');
+    Route::post('/client/request-vehicle', [VehicleRequestController::class, 'store'])->name('vehicleRequest.store');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+});
+
+Route::group(['middleware' => ['auth.admin', 'auth.client']], function () {
+    Route::put('vehicle-request/{id}', [VehicleRequestController::class, 'update'])->name('vehicleRequest.update');
 });

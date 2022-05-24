@@ -1,77 +1,74 @@
 import { React } from "react";
-import { Link } from "@inertiajs/inertia-react";
+import { Link, usePage } from "@inertiajs/inertia-react";
 
 // style
 import "./AppLayout.scss";
 
 // components
-import MainMenuItem from "../Shared/MainMenuItem";
+import { AppRightColumn } from "./components/AppRightColumn";
+import { AppLeftColumn } from "./components/AppLeftColumn";
 
 export default function AdminLayout({ children, title }) {
+    const { url } = usePage();
+
     return (
         <>
             <div className="app-layout">
-                <div id="app-left-column">
-                    <div className="inner-container">
-                        <div className="app-title">VMS APP</div>
+                <AppLeftColumn>
+                    <AdminMenuItems url={url} />
+                </AppLeftColumn>
 
-                        <nav className="app-nav">
-                            <AdminMenuItems />
-                        </nav>
-                    </div>
-                </div>
-
-                <div id="app-right-column" className="w-100">
-                    <header
-                        id="app-header"
-                        className="d-flex justify-content-between"
-                    >
-                        <div className="page-title">{title}</div>
-
-                        <div className="header-nav">
-                            <ul className="list-unstyled">
-                                <li>
-                                    <Link
-                                        as="button"
-                                        href={route("logout")}
-                                        method="post"
-                                        className="btn btn-default"
-                                    >
-                                        Logout
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-                    </header>
-
-                    <main className="page-content">{children}</main>
-                </div>
+                <AppRightColumn title={title}>{children}</AppRightColumn>
             </div>
         </>
     );
 }
 
-function AdminMenuItems() {
+function AdminMenuItems(props) {
     return (
         <>
-            <MainMenuItem link="client.dashboard" text="Dashboard" />
+            <div className="left-menu list-group list-group-flush">
+                <Link
+                    href={route("admin.dashboard")}
+                    className={`list-group-item list-group-item-action ${
+                        props.url === "/admin/dashboard" ? "active" : ""
+                    }`}
+                >
+                    Dashboard
+                </Link>
 
-            <MainMenuItem link="vehicle.index" text="Vehicles" />
+                <Link
+                    href={route("admin.reports.show")}
+                    className="list-group-item"
+                >
+                    Reports
+                </Link>
 
-            <MainMenuItem
-                link="vehicleCategory.index"
-                text="Vehicle Categories"
-            />
-
-            <MainMenuItem link="location.index" text="Locations" />
-        </>
-    );
-}
-
-function ClientMenuItems() {
-    return (
-        <>
-            <MainMenuItem link="client.dashboard" text="Dashboard" />
+                <Link
+                    href={route("admin.vehicles.show")}
+                    className={`list-group-item ${
+                        props.url === "/admin/settings/vehicles" ? "active" : ""
+                    }`}
+                >
+                    Vehicles
+                </Link>
+                <Link
+                    href={route("admin.vehicleCategories.show")}
+                    className={`list-group-item ${
+                        props.url === "/admin/settings/vehicle-categories"
+                            ? "active"
+                            : ""
+                    }`}
+                >
+                    Vehicle Categories
+                </Link>
+                <Link
+                    href={route("admin.locations.show")}
+                    className="list-group-item"
+                >
+                    Locations
+                </Link>
+            </div>
         </>
     );
 }

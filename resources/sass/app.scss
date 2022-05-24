@@ -9,9 +9,7 @@
 @import "./utils/utils";
 @import "./form.scss";
 @import "./views/views";
-
-@import "./layouts/app-layout.scss";
-@import "./layouts/auth-layout.scss";
+@import "./layouts/layouts";
 
 #app {
     height: 100%;

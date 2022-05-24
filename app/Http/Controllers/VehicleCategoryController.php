@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 use App\Models\VehicleCategory;
 use Inertia\Inertia;
@@ -15,8 +16,7 @@ class VehicleCategoryController extends Controller
 
     public function index()
     {
-        $vehicleCategories = VehicleCategory::all();
-        return Inertia::render('VehicleCategories/Index', ['vehicleCategories' => $vehicleCategories]);
+        return VehicleCategory::all();
     }
 
     public function create()
@@ -38,11 +38,12 @@ class VehicleCategoryController extends Controller
         $newVehicleCategory = new VehicleCategory;
 
         $newVehicleCategory->title = $request->vehicleCategoryName;
+        $newVehicleCategory->slug = Str::slug($request->vehicleCategoryName, '-');
 
         $result = $newVehicleCategory->save();
 
         if ($result) {
-            return Redirect::route('vehicleCategory.index');
+            return Redirect::back()->with('success', 'Vehicle category created successfully.');
         }
     }
 
@@ -64,10 +65,11 @@ class VehicleCategoryController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        // Create new vehicle category
+        // Find vehicle category
         $vehicleCategory = VehicleCategory::find($id);
 
         $vehicleCategory->title = $request->vehicleCategoryName;
+        $vehicleCategory->slug = Str::slug($request->vehicleCategoryName, '-');
 
         $result = $vehicleCategory->save();
 

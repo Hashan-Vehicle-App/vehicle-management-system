@@ -20,3 +20,15 @@ input + .error {
     background-color: #ecfdf5;
     color: #047857;
 }
+
+.status {
+    &-pending {
+        background-color: #00b0ff;
+    }
+    &-approved {
+        background-color: #689f38;
+    }
+    &-declined {
+        background-color: #e53935;
+    }
+}

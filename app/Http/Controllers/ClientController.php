@@ -65,6 +65,19 @@ class ClientController extends Controller
         return Inertia::render('Dashboard/Index');
     }
 
+    public function showVehicleRequest()
+    {
+        $locations = Location::all();
+
+        $availableVehiclesToday = (new VehicleController)->getAvailableVehiclesToday();
+
+        $props = array();
+        $props['availableVehiclesToday'] = $availableVehiclesToday;
+        $props['locations'] = $locations;
+
+        return Inertia::render('client/RequestVehicle', $props);
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();

@@ -1,0 +1,25 @@
+.page-section {
+    background-color: #fff;
+    border-radius: $border-radius;
+    padding: $spacer;
+    box-shadow: $box-shadow-sm;
+
+    &-header {
+        padding-bottom: $spacer * 0.5;
+    }
+}
+
+.inner-page-section {
+    background-color: var(--color-gray-lightest);
+
+    &-content {
+        height: 100%;
+        background-color: #fff;
+    }
+
+    &,
+    &-content {
+        border-radius: $border-radius;
+        padding: $spacer;
+    }
+}

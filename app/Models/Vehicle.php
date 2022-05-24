@@ -12,8 +12,7 @@ class Vehicle extends Model
 
     protected $fillable = [
         'vehicle_no',
-        'category_id',
-        'status'
+        'category_id'
     ];
 
     public function category()

@@ -1,5 +1,15 @@
 $theme-colors: (
-    primary: #336bb4,
+    primary: #2196f3,
     accent: #229b93,
     danger: #dc3545,
+    success: #43a047,
 );
+
+$headings-font-weight: 500;
+
+// Table customization
+$table-th-font-weight: 500;
+
+// Alerts customization
+$alert-padding-y: 0.25rem;
+$alert-padding-x: 0.5rem;
