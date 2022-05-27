@@ -4,7 +4,10 @@ import { Link } from "@inertiajs/inertia-react";
 export default function Welcome() {
     return (
         <>
-            <div className="d-flex justify-content-center align-items-center h-100">
+            <div
+                className="d-flex justify-content-center align-items-center h-100"
+                style={{ backgroundImage: "url('/img/bg-pattern.png')" }}
+            >
                 <Link
                     className="btn btn-primary me-3"
                     href={route("admin.login")}

@@ -1,5 +1,5 @@
 import { React } from "react";
-import { useForm } from "@inertiajs/inertia-react";
+import { useForm, Link } from "@inertiajs/inertia-react";
 
 // Layouts
 import AuthLayout from "../../Layouts/AuthLayout";
@@ -68,6 +68,12 @@ export default function ClientLoginPage() {
                 >
                     Login
                 </button>
+
+                <div className="mt-3 text-center">
+                    <Link href={route("page.forgotPassword")}>
+                        Forgot Password?
+                    </Link>
+                </div>
             </form>
         </AuthLayout>
     );
