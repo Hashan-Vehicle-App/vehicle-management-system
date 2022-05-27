@@ -5336,7 +5336,7 @@ function AuthLayout(_ref) {
       height: "100%"
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-      className: "auth-container rounded overflow-hidden bg-white",
+      className: "auth-container shadow-sm border rounded overflow-hidden bg-white",
       style: {
         width: "400px"
       },
@@ -5665,6 +5665,12 @@ function AdminLoginPage() {
         className: "btn btn-primary w-100",
         disabled: processing,
         children: "Login"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "mt-3 text-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          href: route("page.forgotPassword"),
+          children: "Forgot Password?"
+        })
       })]
     })
   });
@@ -5761,6 +5767,12 @@ function ClientLoginPage() {
         className: "btn btn-primary w-100",
         disabled: processing,
         children: "Login"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "mt-3 text-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          href: route("page.forgotPassword"),
+          children: "Forgot Password?"
+        })
       })]
     })
   });
@@ -5816,6 +5828,45 @@ function ClientDashboard() {
         })]
       })
     })
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/Pages/ForgotPassword.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/ForgotPassword.jsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ForgotPassword)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+function ForgotPassword() {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+    className: "d-flex flex-column justify-content-center align-items-center h-100",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+      children: "Forgot Your Password?"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+      children: ["Please contact system administrator.", " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: "mailto:admin@tmsapp.com",
+        children: "admin@tmsapp.com"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      className: "mt-3",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+        href: "/",
+        children: "Back to Home"
+      })
+    })]
   });
 }
 
@@ -6576,6 +6627,9 @@ function Welcome() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "d-flex justify-content-center align-items-center h-100",
+      style: {
+        backgroundImage: "url('/img/bg-pattern.png')"
+      },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
         className: "btn btn-primary me-3",
         href: route("admin.login"),
@@ -8711,7 +8765,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".auth-wrapper {\n    background-color: #d7e3f1;\n}\n\n.auth-page-title {\n    position: relative;\n    margin-bottom: calc(0.5rem + 15px);\n}\n\n.auth-page-title::after {\n    content: \"\";\n    position: absolute;\n    display: block;\n    width: 50px;\n    height: 3px;\n    background-color: var(--gray-lighter);\n    bottom: -15px;\n    left: 50%;\n    transform: translateX(-50%);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".auth-wrapper {\n    background-image: url(\"/img/bg-pattern.png\");\n}\n\n.auth-page-title {\n    position: relative;\n    margin-bottom: calc(0.5rem + 15px);\n}\n\n.auth-page-title::after {\n    content: \"\";\n    position: absolute;\n    display: block;\n    width: 50px;\n    height: 3px;\n    background-color: var(--gray-lighter);\n    bottom: -15px;\n    left: 50%;\n    transform: translateX(-50%);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -97568,6 +97622,8 @@ var map = {
 	"./Auth/ClientLoginPage.jsx": "./resources/js/Pages/Auth/ClientLoginPage.jsx",
 	"./ClientDashboard": "./resources/js/Pages/ClientDashboard.jsx",
 	"./ClientDashboard.jsx": "./resources/js/Pages/ClientDashboard.jsx",
+	"./ForgotPassword": "./resources/js/Pages/ForgotPassword.jsx",
+	"./ForgotPassword.jsx": "./resources/js/Pages/ForgotPassword.jsx",
 	"./Locations/Create": "./resources/js/Pages/Locations/Create.jsx",
 	"./Locations/Create.jsx": "./resources/js/Pages/Locations/Create.jsx",
 	"./VehicleCategories/Create": "./resources/js/Pages/VehicleCategories/Create.jsx",

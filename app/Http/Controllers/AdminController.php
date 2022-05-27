@@ -81,4 +81,9 @@ class AdminController extends Controller
         $vehicleRequests = (new VehicleRequestController)->listByStatus('approved');
         return Inertia::render('admin/PageReports', ['vehicleRequests' => $vehicleRequests]);
     }
+
+    public function showForgotPassword()
+    {
+        return Inertia::render('ForgotPassword');
+    }
 }

@@ -10,7 +10,7 @@ export default function AuthLayout({ children, title }) {
             style={{ height: "100%" }}
         >
             <div
-                className="auth-container rounded overflow-hidden bg-white"
+                className="auth-container shadow-sm border rounded overflow-hidden bg-white"
                 style={{ width: "400px" }}
             >
                 <div className="auth-page-title pt-3">

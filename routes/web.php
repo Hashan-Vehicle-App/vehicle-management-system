@@ -75,6 +75,9 @@ Route::middleware('auth.admin')->group(function () {
 Route::get('/client/login', [ClientController::class, 'showLogin'])->name('client.login');
 Route::post('/client/login', [ClientController::class, 'login'])->name('client.login.attempt');
 
+Route::get('/forgot-password', [AdminController::class, 'showForgotPassword'])->name('page.forgotPassword');
+
+
 Route::middleware('auth.client')->group(function () {
     Route::get('/client/dashboard', [DashboardController::class, 'show'])->name('client.dashboard');
     Route::get('/client/request-vehicle', [ClientController::class, 'showVehicleRequest'])->name('client.vehicleRequest.show');
