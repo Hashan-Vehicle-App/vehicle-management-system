@@ -6068,6 +6068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function EditVehicleCategory() {
   var vehicleCategory = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.vehicleCategory;
+  var vehicleCategoryIndexLinkref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     vehicleCategoryName: vehicleCategory.title || ""
@@ -6076,52 +6077,78 @@ function EditVehicleCategory() {
       setData = _useForm.setData,
       put = _useForm.put,
       processing = _useForm.processing,
-      errors = _useForm.errors;
+      errors = _useForm.errors,
+      wasSuccessful = _useForm.wasSuccessful;
 
   function handleSubmit(e) {
     e.preventDefault();
     put(route("vehicleCategory.update", vehicleCategory.id));
   }
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (wasSuccessful) {
+      setTimeout(function () {
+        if (vehicleCategoryIndexLinkref) {
+          vehicleCategoryIndexLinkref.current.click();
+        }
+      }, 1000);
+    }
+  }, [wasSuccessful]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layouts_AdminLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
       title: "Create vehicle category",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-        onSubmit: handleSubmit,
-        className: "mb-5",
-        style: {
-          maxWidth: "400px"
-        },
-        children: [errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "alert alert-danger mb-2",
-          children: errors.message
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "form-group mb-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-            htmlFor: "vehicleCategoryName",
-            children: "Category Name"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-            id: "vehicleCategoryName",
-            name: "vehicleCategoryName",
-            type: "text",
-            placeholder: "Enter a category name",
-            value: data.vehicleCategoryName,
-            onChange: function onChange(e) {
-              return setData("vehicleCategoryName", e.target.value);
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        children: [wasSuccessful && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "alert alert-success",
+            children: "Vehicle category updated."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+            href: route("admin.vehicleCategories.show"),
+            style: {
+              visibility: "hidden",
+              width: 0,
+              height: 0
             },
-            className: "form-control"
-          }), errors.vehicleCategoryName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "alert alert-danger",
-            children: errors.vehicleCategoryName
+            ref: vehicleCategoryIndexLinkref,
+            children: "Vehicle Categories"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            type: "submit",
-            role: "button",
-            disabled: processing,
-            className: "btn btn-primary",
-            children: "Update Vehicle Category"
-          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+          onSubmit: handleSubmit,
+          className: "mb-5",
+          style: {
+            maxWidth: "400px"
+          },
+          children: [errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            className: "alert alert-danger mb-2",
+            children: errors.message
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            className: "form-group mb-3",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
+              htmlFor: "vehicleCategoryName",
+              children: "Category Name"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+              id: "vehicleCategoryName",
+              name: "vehicleCategoryName",
+              type: "text",
+              placeholder: "Enter a category name",
+              value: data.vehicleCategoryName,
+              onChange: function onChange(e) {
+                return setData("vehicleCategoryName", e.target.value);
+              },
+              className: "form-control"
+            }), errors.vehicleCategoryName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              className: "alert alert-danger",
+              children: errors.vehicleCategoryName
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              type: "submit",
+              role: "button",
+              disabled: processing,
+              className: "btn btn-primary",
+              children: "Update Vehicle Category"
+            })
+          })]
         })]
       })
     })
@@ -6376,9 +6403,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _Layouts_AdminLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Layouts/AdminLayout */ "./resources/js/Layouts/AdminLayout.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _Layouts_AdminLayout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Layouts/AdminLayout */ "./resources/js/Layouts/AdminLayout.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 // Vehicle edit page
+
 
  // Layouts
 
@@ -6390,6 +6419,7 @@ function EditVehicle() {
   var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props,
       vehicle = _usePage$props.vehicle,
       vehicleCategories = _usePage$props.vehicleCategories;
+  var vehicleIndexLinkref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.useForm)({
     vehicleNo: vehicle.vehicle_no || "",
@@ -6399,79 +6429,105 @@ function EditVehicle() {
       setData = _useForm.setData,
       put = _useForm.put,
       processing = _useForm.processing,
-      errors = _useForm.errors;
+      errors = _useForm.errors,
+      wasSuccessful = _useForm.wasSuccessful;
 
   function handleSubmit(e) {
     e.preventDefault();
     put(route("vehicle.update", vehicle.id));
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Layouts_AdminLayout__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (wasSuccessful) {
+      setTimeout(function () {
+        if (vehicleIndexLinkref) {
+          vehicleIndexLinkref.current.click();
+        }
+      }, 1000);
+    }
+  }, [wasSuccessful]);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Layouts_AdminLayout__WEBPACK_IMPORTED_MODULE_3__["default"], {
       title: "Create vehicle",
-      children: vehicleCategories && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
-        onSubmit: handleSubmit,
-        className: "mb-5",
-        style: {
-          maxWidth: "400px"
-        },
-        children: [errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          className: "alert alert-danger mb-2",
-          children: errors.message
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "form-group mb-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-            htmlFor: "vehicleNo",
-            children: "Vehicle No"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
-            id: "vehicleNo",
-            name: "vehicleNo",
-            type: "text",
-            placeholder: "Enter a vehicle no",
-            value: data.vehicleNo,
-            onChange: function onChange(e) {
-              return setData("vehicleNo", e.target.value);
+      children: vehicleCategories && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+        children: [wasSuccessful && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "alert alert-success",
+            children: "Vehicle updated."
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+            href: route("admin.vehicles.show"),
+            style: {
+              visibility: "hidden",
+              width: 0,
+              height: 0
             },
-            className: "form-control"
-          }), errors.vehicleNo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "alert alert-danger",
-            children: errors.vehicleNo
+            ref: vehicleIndexLinkref,
+            children: "Vehicles"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "form-group mb-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
-            htmlFor: "vehicleCategory",
-            children: "Category"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
-            name: "vehicleCategory",
-            id: "vehicleCategory",
-            value: data.vehicleCategory,
-            onChange: function onChange(e) {
-              return setData("vehicleCategory", e.target.value);
-            },
-            className: "form-control",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-              value: "",
-              disabled: true,
-              children: "Select a vehicle category"
-            }), vehicleCategories.map(function (category, i) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
-                value: category.id,
-                children: category.title
-              }, "vehicle-category-".concat(i));
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+          onSubmit: handleSubmit,
+          className: "mb-5",
+          style: {
+            maxWidth: "400px"
+          },
+          children: [errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            className: "alert alert-danger mb-2",
+            children: errors.message
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group mb-3",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "vehicleNo",
+              children: "Vehicle No"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              id: "vehicleNo",
+              name: "vehicleNo",
+              type: "text",
+              placeholder: "Enter a vehicle no",
+              value: data.vehicleNo,
+              onChange: function onChange(e) {
+                return setData("vehicleNo", e.target.value);
+              },
+              className: "form-control"
+            }), errors.vehicleNo && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "alert alert-danger",
+              children: errors.vehicleNo
             })]
-          }), errors.vehicleCategory && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-            className: "alert alert-danger",
-            children: errors.vehicleCategory
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "form-group mb-4",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+              htmlFor: "vehicleCategory",
+              children: "Category"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
+              name: "vehicleCategory",
+              id: "vehicleCategory",
+              value: data.vehicleCategory,
+              onChange: function onChange(e) {
+                return setData("vehicleCategory", e.target.value);
+              },
+              className: "form-control",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                value: "",
+                disabled: true,
+                children: "Select a vehicle category"
+              }), vehicleCategories.map(function (category, i) {
+                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                  value: category.id,
+                  children: category.title
+                }, "vehicle-category-".concat(i));
+              })]
+            }), errors.vehicleCategory && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "alert alert-danger",
+              children: errors.vehicleCategory
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+              type: "submit",
+              role: "button",
+              disabled: processing,
+              className: "btn btn-primary",
+              children: "Update Vehicle"
+            })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-            type: "submit",
-            role: "button",
-            disabled: processing,
-            className: "btn btn-primary",
-            children: "Update Vehicle"
-          })
         })]
       })
     })
@@ -6625,20 +6681,23 @@ __webpack_require__.r(__webpack_exports__);
 
 function Welcome() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "d-flex justify-content-center align-items-center h-100",
       style: {
-        backgroundImage: "url('/img/bg-pattern.png')"
+        backgroundImage: "url('/img/truck_bg.webp')"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        className: "btn btn-primary me-3",
-        href: route("admin.login"),
-        children: "Admin Login"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        className: "btn btn-success",
-        href: route("client.login"),
-        children: "Client Login"
-      })]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "d-flex bg-white rounded shadow p-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          className: "btn btn-primary me-3",
+          href: route("admin.login"),
+          children: "Admin Login"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+          className: "btn btn-success",
+          href: route("client.login"),
+          children: "Client Login"
+        })]
+      })
     })
   });
 }
